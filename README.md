@@ -31,6 +31,7 @@ brew "<formula>"
 + [VimMotion](https://github.com/dwarvesf/VimMotionApp): Access macOS UI elements with your fingers stay on keyboard. Inspired by vim-easymotion & avy-mode. 
 + [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
 + [Alexandria](https://github.com/btpf/Alexandria): ebook reader tools
++ [Ryujinx](https://ryujinx.org/): switch 模拟器
 
 ## 部分安装脚本来源
 
