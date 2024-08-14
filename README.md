@@ -34,6 +34,7 @@ brew "<formula>"
 + [Ryujinx](https://ryujinx.org/): switch 模拟器
 + [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
++ [RPCS3](https://rpcs3.net/) ps3 模拟器
 
 ## 部分安装脚本来源
 
