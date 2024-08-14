@@ -32,6 +32,7 @@ brew "<formula>"
 + [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
 + [Alexandria](https://github.com/btpf/Alexandria): ebook reader tools
 + [Ryujinx](https://ryujinx.org/): switch 模拟器
++ [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
 
 ## 部分安装脚本来源
 
