@@ -28,8 +28,10 @@ brew "<formula>"
 + [Quickrecorder](https://github.com/lihaoyun6/QuickRecorder) QuickRecorder 录屏工具
 + [spotube](https://github.com/KRTirtho/spotube): 使用 youtube 作为后端源的音乐播放器
 + [AirBattery](https://github.com/lihaoyun6/AirBattery): 在Mac上获取你所有设备的电量信息并显示在Dock / 状态栏 / 小组件上! 
++ [VimMotion](https://github.com/dwarvesf/VimMotionApp): Access macOS UI elements with your fingers stay on keyboard. Inspired by vim-easymotion & avy-mode. 
 
 ## 部分安装脚本来源
 
 + [KRTirtho/homebrew-apps: Tap for hosting my app's Casks and formulas](https://github.com/KRTirtho/homebrew-apps/tree/main)
 + [[https://github.com/lihaoyun6/homebrew-tap/tree/master][lihaoyun6/homebrew-tap]]
++ [dwarvesf--homebrew-tap](https://github.com/dwarvesf/homebrew-tap)
