@@ -29,6 +29,7 @@ brew "<formula>"
 + [spotube](https://github.com/KRTirtho/spotube): 使用 youtube 作为后端源的音乐播放器
 + [AirBattery](https://github.com/lihaoyun6/AirBattery): 在Mac上获取你所有设备的电量信息并显示在Dock / 状态栏 / 小组件上! 
 + [VimMotion](https://github.com/dwarvesf/VimMotionApp): Access macOS UI elements with your fingers stay on keyboard. Inspired by vim-easymotion & avy-mode. 
++ [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
 
 ## 部分安装脚本来源
 
