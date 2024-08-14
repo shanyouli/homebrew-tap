@@ -22,3 +22,4 @@ brew "<formula>"
 + [neovide](https://github.com/neovide/neovide): neovim 的 GUI 工具，将 nvim 和 neovide 分离
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
 + [Clash.Verge](https://github.com/clash-verge-rev/clash-verge-rev): clash 客户端
++ [DashPlayer](https://github.com/solidSpoon/DashPlayer): 看视频学习双语
