@@ -24,3 +24,5 @@ brew "<formula>"
 + [Clash.Verge](https://github.com/clash-verge-rev/clash-verge-rev): clash 客户端
 + [DashPlayer](https://github.com/solidSpoon/DashPlayer): 看视频学习双语
 + [chatgpt](https://github.com/lencx/ChatGPT) lencx chatgpt 客户端
++ [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
++ [Quickrecorder](https://github.com/lihaoyun6/QuickRecorder) QuickRecorder 录屏工具
