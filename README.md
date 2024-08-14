@@ -26,3 +26,9 @@ brew "<formula>"
 + [chatgpt](https://github.com/lencx/ChatGPT) lencx chatgpt 客户端
 + [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
 + [Quickrecorder](https://github.com/lihaoyun6/QuickRecorder) QuickRecorder 录屏工具
++ [spotube](https://github.com/KRTirtho/spotube): 使用 youtube 作为后端源的音乐播放器
+
+## 部分安装脚本来源
+
++ [KRTirtho/homebrew-apps: Tap for hosting my app's Casks and formulas](https://github.com/KRTirtho/homebrew-apps/tree/main)
+
