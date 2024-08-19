@@ -22,8 +22,11 @@ cask "rpcs3" do
     end
   end
 
-
   app "RPCS3.app"
+
+  caveats do
+    requires_rosetta
+  end
 
   zap trash: ""
 end
