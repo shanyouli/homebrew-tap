@@ -1,6 +1,3 @@
-# Documentation: https://docs.brew.sh/Cask-Cookbook
-#                https://docs.brew.sh/Adding-Software-to-Homebrew#cask-stanzas
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 cask "zyplayer" do
   arch arm: "arm64", intel: "x64"
   version "3.3.7"
@@ -13,17 +10,13 @@ cask "zyplayer" do
   desc "跨平台桌面端视频资源播放器,免费高颜值."
   homepage "https://github.com/Hiram-Wong/ZyPlayer"
 
-  # Documentation: https://docs.brew.sh/Brew-Livecheck
   livecheck do
     url :url
     strategy :github_latest
   end
 
-  # depends_on macos: ""
-
   app "zyplayer.app"
 
-  # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
   zap trash: [
     "~/Library/Saved Application State/com.zyplayer.savedState",
     "~/Library/Saved Application State/com.zyplayer.app.savedState",

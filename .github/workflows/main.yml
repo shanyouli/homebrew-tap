@@ -26,7 +26,10 @@ jobs:
         os: [macos-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       - name: Homebrew env
         uses: ./.github/actions/homebrew-env
@@ -34,12 +37,12 @@ jobs:
       - name: Brew Tap
         uses: ./.github/actions/brew-tap
         with:
-          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
 
       - name: Bump casks
         uses: ./.github/actions/bump-casks
         with:
-          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
 
   check_formula:
     runs-on: ubuntu-latest
@@ -68,7 +71,10 @@ jobs:
         os: [macos-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       - name: Homebrew env
         uses: ./.github/actions/homebrew-env
@@ -76,7 +82,7 @@ jobs:
       - name: Brew Tap
         uses: ./.github/actions/brew-tap
         with:
-          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
 
       # - name: Bump formulae
       #   uses: ./.github/actions/bump-formulas

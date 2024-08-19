@@ -10,7 +10,6 @@ cask "neovide" do
   desc "Neovim Client"
   homepage "https://github.com/neovide/neovide"
 
-  # depends_on formula: "neovim"
   livecheck do
     url :url
     strategy :github_latest
