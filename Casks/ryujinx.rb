@@ -23,9 +23,9 @@ cask "ryujinx" do
   # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
   zap trash: [
     "~/Library/Application Support/CrashReporter/Ryujinx_1EA4C51C-1E99-5395-A3A6-456A7C843B09.plist",
-    # "~/Library/Application Support/Ryujinx",
     "~/Library/Logs/Ryujinx",
     "~/Library/Preferences/org.ryujinx.Ryujinx.plist",
     "~/Library/Saved Application State/org.ryujinx.Ryujinx.savedState",
   ]
+  # "~/Library/Application Support/Ryujinx",
 end
