@@ -36,6 +36,7 @@ brew "<formula>"
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 + [RPCS3](https://rpcs3.net/) ps3 模拟器
 + [GUI.for.Clash](https://github.com/GUI-for-Cores/GUI.for.Clash) clash 客户端
++ [GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox) singBox 客户端
 
 ## 部分安装脚本来源
 
