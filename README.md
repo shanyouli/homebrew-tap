@@ -37,6 +37,7 @@ brew "<formula>"
 + [RPCS3](https://rpcs3.net/) ps3 模拟器
 + [GUI.for.Clash](https://github.com/GUI-for-Cores/GUI.for.Clash) clash 客户端
 + [GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox) singBox 客户端
++ [mind-map](https://github.com/wanglin2/mind-map) 思维导图
 
 ## 部分安装脚本来源
 

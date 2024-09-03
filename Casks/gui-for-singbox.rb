@@ -7,7 +7,7 @@ cask "gui-for-singbox" do
 
   url "https://github.com/GUI-for-Cores/GUI.for.SingBox/releases/download/v#{version}/GUI.for.SingBox-darwin-#{arch}.zip"
   name "gui-for-singbox"
-  desc "GUI for SingBox"
+  desc "GUI for SingBox client"
   homepage "https://github.com/GUI-for-Cores/GUI.for.SingBox"
 
   livecheck do
