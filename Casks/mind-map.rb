@@ -10,16 +10,9 @@ cask "mind-map" do
   homepage "https://github.com/wanglin2/mind-map"
 
   livecheck do
-    url "https://github.com/wanlin2/mind-map/release"
-    regex(%r{/electron-(\d+(?:\.\d+)){2,}}i)
-    strategy :github_latest do |json, regex|
-      json["assets"]&.map do |asset|
-        match = asset["browser_download_url"]&.match(regex)
-        next if match.blank?
-
-        "#(match[1])"
-      end
-   end
+    url "https://github.com/wanglin2/mind-map/releases/latest"
+    strategy :page_match
+    regex(%r{href=.*?/tag/electron-(\d+(?:\.\d+)+)["' >]}i)
   end
 
 

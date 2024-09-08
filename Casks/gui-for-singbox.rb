@@ -7,7 +7,7 @@ cask "gui-for-singbox" do
 
   url "https://github.com/GUI-for-Cores/GUI.for.SingBox/releases/download/v#{version}/GUI.for.SingBox-darwin-#{arch}.zip"
   name "gui-for-singbox"
-  desc "GUI for SingBox client"
+  desc "singbox client"
   homepage "https://github.com/GUI-for-Cores/GUI.for.SingBox"
 
   livecheck do
@@ -19,8 +19,8 @@ cask "gui-for-singbox" do
 
   zap trash: [
     "~/Library/WebKit/com.wails.GUI.for.SingBox",
+    "~/Library/Preferences/com.wails.GUI.for.SingBox.plist",
     "~/Library/Caches/com.wails.GUI.for.SingBox",
     "~/Library/Saved Application State/com.wails.GUI.for.SingBox.savedState",
-    "~/Library/Preferences/com.wails.GUI.for.SingBox.plist",
   ]
 end
