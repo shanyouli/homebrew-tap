@@ -1,6 +1,6 @@
 cask "calibre-cjk" do
-  version "7.17.0"
-  sha256 "cbfad48d10847a758fdb8b30f18708fb647d14733b236c97d74848577aa70f05"
+  version "7.18.0"
+  sha256 "e0afeaf6d81d0e61597c38eaf567d2fe5b399f6a3be332ba0c2d4e1a1833641c"
 
   url "https://download.calibre-ebook.com/#{version}/calibre-#{version}.dmg"
   name "calibre"
