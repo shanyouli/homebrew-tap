@@ -1,10 +1,11 @@
 cask "spotube" do
-  version "3.8.0"
-  sha256 "a900db1919e26bc2407259b60204f6142c61612e96a0db8358831b1bbea90c1d"
+  version "3.8.1"
+  sha256 "35b285be0e749ff181c9553afef34b9934d5f5b848865dc0c65c00706eb42956"
+
   url "https://github.com/KRTirtho/spotube/releases/download/v#{version}/Spotube-macos-universal.dmg",
-    verified: "github.com/KRTirtho/spotube/"
+      verified: "github.com/KRTirtho/spotube/"
   name "Spotube"
-  desc "🎧 Open source Spotify client"
+  desc "Open source Spotify client"
   homepage "https://spotube.krtirtho.dev/"
 
   livecheck do
