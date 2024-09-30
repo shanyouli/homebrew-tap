@@ -5,7 +5,7 @@ cask "spotube" do
     verified: "github.com/KRTirtho/spotube/"
   name "Spotube"
   desc "🎧 Open source Spotify client"
-  homepage "https://github.com/KRTirtho/spotube"
+  homepage "https://spotube.krtirtho.dev/"
 
   livecheck do
     url "https://github.com/KRTirtho/spotube"
