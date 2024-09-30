@@ -1,9 +1,9 @@
 cask "snapbox" do
-  version "1.9.9"
-  sha256 "95bb2a27be08306c2f503d1e1136ec9be59ccc5bc7bc295c588fd2969a4f34c4"
+  version "1.11.1"
+  sha256 "09b8f01d0bf38482970b37931297c66718eb75371436d652110ee7f77d83456e"
 
   url "https://github.com/xinxiaotech/snapbox-release/releases/download/app-v#{version}/Snapbox_#{version}_aarch64.dmg",
-      verified: "github.com/xinxiaotech/snapbox-release"
+      verified: "github.com/xinxiaotech/snapbox-release/"
   name "Snapbox"
   desc "AI reactions instantly from your friendly local LLaMA"
   homepage "https://snapbox.app/"
