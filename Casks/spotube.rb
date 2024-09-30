@@ -3,13 +3,13 @@ cask "spotube" do
   sha256 "a900db1919e26bc2407259b60204f6142c61612e96a0db8358831b1bbea90c1d"
 
   url "https://github.com/KRTirtho/spotube/releases/download/v#{version}/Spotube-macos-universal.dmg",
-      verified: "github.com/KRTirtho/spotube/"
+    verified: "github.com/KRTirtho/spotube/"
   name "Spotube"
-  desc "🎧 Open source Spotify client that doesn't require Premium nor uses Electron! Available for both desktop & mobile!"
-  homepage "https://spotube.krtirtho.dev/"
+  desc "🎧 Open source Spotify client"
+  homepage "https://github.com/KRTirtho/spotube"
 
   livecheck do
-    url :url
+    url "https://github.com/KRTirtho/spotube"
     strategy :github_latest
   end
 
