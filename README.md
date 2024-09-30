@@ -38,6 +38,7 @@ brew "<formula>"
 + [GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox) singBox 客户端
 + [mind-map](https://github.com/wanglin2/mind-map) 思维导图
 + [apprhyme](https://github.com/canxin121/app_rhyme) 音乐播放器支持 酷狗，网易云音源
++ [snapbox](https://snapbox.app/): 依赖 ollama.app 的 ai 本地客户端， 可以使用 api
 
 ## 部分安装脚本来源
 
