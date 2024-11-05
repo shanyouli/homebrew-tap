@@ -1,8 +1,8 @@
 cask "lyricsx" do
-  version "1.7.0,2024-10-04,19-26-56"
+  version "1.7.0,1926"
   sha256 "7d39fdeb333881212818fe33b2e73c21c680f7a91cb55d49ab526bde4a64c38b"
 
-  url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v#{version.csv.first}/LyricsX_#{version.csv.first}+#{version.csv.third}.zip"
+  url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v#{version.csv.first}/LyricsX_#{version.csv.first}+#{version.csv.second}.zip"
   name "LyricsX"
   desc "Ultimate Lyrics App"
   homepage "https://github.com/MxIris-LyricsX-Project/LyricsX"
@@ -15,14 +15,14 @@ cask "lyricsx" do
         match = asset["browser_download_url"]&.match(regex)
         next if match.blank?
 
-        "#{match[1]},#{match[3]},#{match[5]}"
+        "#{match[1]},#{match[5]}"
       end
     end
   end
 
   conflicts_with cask: "lyricsx"
 
-  app "LyricsX #{version.csv.second} #{version.csv.third}/LyricsX.app"
+  app "LyricsX #{version.csv.first} #{version.csv.second}/LyricsX.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.JH.LyricsX",
