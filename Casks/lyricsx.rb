@@ -2,14 +2,14 @@ cask "lyricsx" do
   version "1.7.0,1926"
   sha256 "7d39fdeb333881212818fe33b2e73c21c680f7a91cb55d49ab526bde4a64c38b"
 
-  url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v#{version.csv.first}/LyricsX_#{version.csv.first}+#{version.csv.second}.zip"
+  url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v#{version.csv.first}/LyricsX_#{version.csv.first}%2B#{version.csv.second}.zip"
   name "LyricsX"
   desc "Ultimate Lyrics App"
   homepage "https://github.com/MxIris-LyricsX-Project/LyricsX"
 
   livecheck do
     url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases"
-    regex(%r{/v(\d+(\.\d+){2})/LyricsX_(\d+(\.\d+){2})\+(\d{4})\.zip}i)
+    regex(%r{/v(\d+(\.\d+){2})/LyricsX_(\d+(\.\d+){2})%2B(\d{4})\.zip}i)
     strategy :github_latest do |json, regex|
       json["assets"]&.map do |asset|
         match = asset["browser_download_url"]&.match(regex)
@@ -22,7 +22,7 @@ cask "lyricsx" do
 
   conflicts_with cask: "lyricsx"
 
-  app "LyricsX #{version.csv.first} #{version.csv.second}/LyricsX.app"
+  app "LyricsX.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.JH.LyricsX",
