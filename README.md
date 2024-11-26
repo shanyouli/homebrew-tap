@@ -42,6 +42,7 @@ brew "<formula>"
 + [cozy-reader](https://github.com/srsng/cozy-reader) epub reader, 目前版本0.1.19 无法工作
 + [cherry-studio](https://github.com/kangfenmao/cherry-studio) AI chat 客户端
 + [compressO](https://github.com/codeforreal1/compressO) 视频压缩工具
++ [chatmlx](https://github.com/johnmai-dev/ChatMLX) MLX 语言模型，来自 hugging face
 
 ## 部分安装脚本来源
 
