@@ -1,6 +1,6 @@
 cask "cozy-reader" do
-  version "0.1.19"
-  sha256 "4327a0e8a434b32f723bbddde66481b2d72ec5196662dde30aca5d85403147c6"
+  version "0.1.20"
+  sha256 "062f6ebb5214b5f995ddd2a42205217ff41cdb768c75bd6bc365bf7b3449784c"
 
   url "https://github.com/srsng/cozy-reader/releases/download/v#{version}/cozy-reader_#{version}_aarch64.dmg"
   name "cozy-reader"
@@ -17,8 +17,8 @@ cask "cozy-reader" do
   app "cozy-reader.app"
 
   zap trash: [
-    "~/Library/Caches/com.CozyReader.dev",
     "~/Library/Application Support/CrashReporter/cozy-reader_1EA4C51C-1E99-5395-A3A6-456A7C843B09.plist",
+    "~/Library/Caches/com.CozyReader.dev",
     "~/Library/Saved Application State/com.CozyReader.dev.savedState",
     "~/Library/WebKit/com.CozyReader.dev",
   ]
