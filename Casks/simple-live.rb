@@ -1,6 +1,6 @@
 cask "simple-live" do
-  version "1.7.5,10705"
-  sha256 "7b1513a0fb37e14e8075f2679f2787a3fdcced134fbe7926f89ff8171b8df7b0"
+  version "1.7.6,10706"
+  sha256 "f83bf19c14f793e1b3a1907541de5e7e6b4667ae4d0523f03f425befc5e2e768"
 
   url "https://github.com/xiaoyaocz/dart_simple_live/releases/download/v#{version.csv.first}/simple_live_app-#{version.csv.first}%2B#{version.csv.second}-macos.dmg"
   name "simple-live"
