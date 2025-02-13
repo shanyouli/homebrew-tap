@@ -31,7 +31,6 @@ brew "<formula>"
 + [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
 + [Alexandria](https://github.com/btpf/Alexandria): ebook reader tools
 + [Ryujinx](https://ryujinx.org/): switch 模拟器
-+ [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 + [RPCS3](https://rpcs3.net/) ps3 模拟器
 + [GUI.for.Clash](https://github.com/GUI-for-Cores/GUI.for.Clash) clash 客户端
@@ -50,3 +49,6 @@ brew "<formula>"
 + [KRTirtho/homebrew-apps: Tap for hosting my app's Casks and formulas](https://github.com/KRTirtho/homebrew-apps/tree/main)
 + [[https://github.com/lihaoyun6/homebrew-tap/tree/master][lihaoyun6/homebrew-tap]]
 + [dwarvesf--homebrew-tap](https://github.com/dwarvesf/homebrew-tap)
+
+## archive
++ [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
