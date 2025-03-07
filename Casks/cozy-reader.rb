@@ -1,6 +1,6 @@
 cask "cozy-reader" do
-  version "0.1.20"
-  sha256 "062f6ebb5214b5f995ddd2a42205217ff41cdb768c75bd6bc365bf7b3449784c"
+  version "0.1.21"
+  sha256 "5696cf3f693833c196315f335f674186b3b41a92e884ee38220b4c1aaa820a90"
 
   url "https://github.com/srsng/cozy-reader/releases/download/v#{version}/cozy-reader_#{version}_aarch64.dmg"
   name "cozy-reader"
