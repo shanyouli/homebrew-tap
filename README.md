@@ -43,11 +43,11 @@ brew "<formula>"
 + [compressO](https://github.com/codeforreal1/compressO) 视频压缩工具
 + [chatmlx](https://github.com/johnmai-dev/ChatMLX) MLX 语言模型，来自 hugging face
 + [readest](https://github.com/readest/readest) Readest is a modern, feature-rich ebook reader
-
++ [launchpader](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
 ## 部分安装脚本来源
 
 + [KRTirtho/homebrew-apps: Tap for hosting my app's Casks and formulas](https://github.com/KRTirtho/homebrew-apps/tree/main)
-+ [[https://github.com/lihaoyun6/homebrew-tap/tree/master][lihaoyun6/homebrew-tap]]
++ [[lihaoyun6/homebrew-tap](https://github.com/lihaoyun6/homebrew-tap/tree/master)]
 + [dwarvesf--homebrew-tap](https://github.com/dwarvesf/homebrew-tap)
 
 ## archive
