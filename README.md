@@ -44,6 +44,7 @@ brew "<formula>"
 + [chatmlx](https://github.com/johnmai-dev/ChatMLX) MLX 语言模型，来自 hugging face
 + [readest](https://github.com/readest/readest) Readest is a modern, feature-rich ebook reader
 + [launchpader](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
++ [museeks](https://museeks.io/) music 播放器
 ## 部分安装脚本来源
 
 + [KRTirtho/homebrew-apps: Tap for hosting my app's Casks and formulas](https://github.com/KRTirtho/homebrew-apps/tree/main)
