@@ -16,7 +16,6 @@ brew "<formula>"
 ## Casks
 
 + [aural](https://github.com/kartik-venugopal/aural-player): 音乐播放器
-+ [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web): A cross-platform ChatGPT/Gemini UI 
 + [LyricsX](https://github.com/MxIris-LyricsX-Project/LyricsX): 歌词显示工具
 + [neovide](https://github.com/neovide/neovide): neovim 的 GUI 工具，将 nvim 和 neovide 分离
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
@@ -55,3 +54,5 @@ brew "<formula>"
 ## archive
 + [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
 + [cherry-studio](https://github.com/kangfenmao/cherry-studio) AI chat 客户端
++ [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web): A cross-platform ChatGPT/Gemini UI 
+  - 它自2.16.0 版本后没有提供对应的 app 下载包
