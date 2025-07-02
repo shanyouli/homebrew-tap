@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -e
+set +e
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cask=$1
 
@@ -27,6 +29,9 @@ toV=${cleanCheck#*==>}
 
 echo "Updating $cask from $fromV to $toV"
 if [[ "$fromV" != "$toV" ]]; then
-  brew bump-cask-pr "$cask" --version "$toV" --verbose
+  if ! brew bump-cask-pr "$cask" --version "$toV" --verbose 2>&1 ; then
+    echo "$cask 更新到 $toV 失败，请检查该 casks." >> "$DIR"/../../error.log
+  fi
 fi
+ls "$DIR"/../..
 echo "Done for $cask"

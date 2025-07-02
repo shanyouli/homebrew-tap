@@ -49,6 +49,13 @@ jobs:
           HOMEBREW_GITHUB_API_TOKEN: ${{secrets.HOMEBREW_GITHUB_API_TOKEN}}
         run: |
           brew pr-automerge --autosquash --tap shanyouli/tap
+      - name: check brew bump caks error
+        run: |
+          if [[ -s ./error.log ]]; then
+             echo "发现错误:"
+             cat ./error.log
+             exit 1
+          fi
 
   check_formula:
     runs-on: ubuntu-latest
