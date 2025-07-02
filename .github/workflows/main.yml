@@ -31,6 +31,15 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
+      - name: Delete all remote bump- branches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api repos/${{ github.repository }}/git/refs/heads \
+            | jq -r '.[].ref' \
+            | grep '^refs/heads/bump-' \
+            | sed 's|refs/heads/||' \
+            | xargs -L1 -I{} gh api -X DELETE repos/${{ github.repository }}/git/refs/heads/{}
       - name: Homebrew env
         uses: ./.github/actions/homebrew-env
 

@@ -33,5 +33,4 @@ if [[ "$fromV" != "$toV" ]]; then
     echo "$cask 更新到 $toV 失败，请检查该 casks." >> "$DIR"/../../../error.log
   fi
 fi
-ls "$DIR"/../../..
 echo "Done for $cask"
