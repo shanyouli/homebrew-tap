@@ -1,6 +1,6 @@
 cask "museeks" do
-  version "0.22.0"
-  sha256 "1bd430e9aba119a671e0de25b499ac98b14329d39b6de8262d8716f969dc6380"
+  version "0.22.3"
+  sha256 "fd5cef36e61f6b21367a8a35336d0170a07b8c8ee827ba0e07d1423aa599eda7"
 
   url "https://github.com/martpie/museeks/releases/download/#{version}/Museeks_#{version}_universal.dmg",
       verified: "github.com/martpie/museeks/"
