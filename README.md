@@ -43,6 +43,7 @@ brew "<formula>"
 + [readest](https://github.com/readest/readest) Readest is a modern, feature-rich ebook reader
 + [launchpader](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
 + [museeks](https://museeks.io/) music 播放器
++ [mountmate](https://homielab.com/page/mountmate) 外接硬盘管理挂载管理工具
 + [stillcolor](https://github.com/aiaf/Stillcolor) 外置显示屏闪烁，修复工具
 
 ## 部分安装脚本来源
