@@ -1,15 +1,14 @@
 cask "ryujinx" do
-  version "1.3.2"
-  sha256 "c157907318348999ce4fb8c8fe8ddd511f0ddea643f22b1529527390180cb700"
+  version "1.3.96"
+  sha256 "35710bc111d3b7146a99b03cb93af9120ac3a6200b587cb19291dd1d85b4dd23"
 
-  url "https://git.ryujinx.app/api/v4/projects/1/packages/generic/Ryubing/#{version}/ryujinx-#{version}-macos_universal.app.tar.gz"
+  url "https://git.ryujinx.app/api/v4/projects/68/packages/generic/Ryubing-Canary/#{version}/ryujinx-canary-#{version}-macos_universal.app.tar.gz"
   name "Ryujinx"
   desc "Simple, experimental Nintendo Switch emulator"
   homepage "https://ryujinx.app/"
 
   livecheck do
-    url "https://git.ryujinx.app/ryubing/ryujinx/-/releases.atom"
-    regex(%r{href=".*?/\-/releases/(\d+(?:\.\d+)+)["' >]}i)
+    url "https://git.ryujinx.app/ryubing/ryujinx.git"
   end
 
   depends_on macos: ">= :monterey"
