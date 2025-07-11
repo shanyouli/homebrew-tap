@@ -45,6 +45,7 @@ brew "<formula>"
 + [museeks](https://museeks.io/) music 播放器
 + [mountmate](https://homielab.com/page/mountmate) 外接硬盘管理挂载管理工具
 + [stillcolor](https://github.com/aiaf/Stillcolor) 外置显示屏闪烁，修复工具
+- [petrichor](https://github.com/kushalpandya/Petrichor) 本地音乐播放器
 
 ## 部分安装脚本来源
 

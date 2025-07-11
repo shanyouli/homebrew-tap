@@ -13,6 +13,7 @@ cask "gui-for-clash" do
   livecheck do
     url :url
     strategy :github_latest
+    regex(/^v?(\d+(?:\.\d+)+(?:-Alpha(?:-\d+)?)?)$/i)
   end
 
   app "GUI.for.Clash.app"
