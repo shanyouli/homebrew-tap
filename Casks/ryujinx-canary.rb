@@ -1,4 +1,4 @@
-cask "ryujinx" do
+cask "ryujinx-canary" do
   version "1.3.96"
   sha256 "35710bc111d3b7146a99b03cb93af9120ac3a6200b587cb19291dd1d85b4dd23"
 
@@ -12,6 +12,7 @@ cask "ryujinx" do
   end
 
   depends_on macos: ">= :monterey"
+  conflicts_with cask: "ryujinx"
 
   app "ryujinx.app"
 
