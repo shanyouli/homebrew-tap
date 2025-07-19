@@ -4,22 +4,22 @@ cask "petrichor" do
 
   url "https://github.com/kushalpandya/Petrichor/releases/download/v#{version}/Petrichor-#{version}-Universal.dmg"
   name "Petrichor"
-  desc "Native macOS music player with folder-based library management"
+  desc "Native music player with folder-based library management"
   homepage "https://github.com/kushalpandya/Petrichor"
 
   livecheck do
     url :url
     strategy :github_latest
-    regex(/^v?(\d+(?:\.\d+)+(?:-alpha-\d+)?)$/i)
+    regex(/^v?(\d+(?:\.\d+)+(?:-(alpha|beta)-\d+)?)$/i)
   end
 
   app "Petrichor.app"
 
   zap trash: [
     "~/Library/Application Support/org.Petrichor",
+    "~/Library/Caches/org.Petrichor",
     "~/Library/Preferences/org.Petrichor.plist",
     "~/Library/Saved Application State/org.Petrichor.savedState",
-    "~/Library/Caches/org.Petrichor",
   ]
 
   caveats <<~EOS
