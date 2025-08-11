@@ -1,4 +1,4 @@
-cask "neovide" do
+cask "neovide-pure" do
   arch arm: "aarch64", intel: "x86_64"
 
   version "0.15.0"
@@ -16,6 +16,7 @@ cask "neovide" do
   end
 
   app "Neovide.app"
+  conflicts_with cask: "neovide"
   binary "#{appdir}/Neovide.app/Contents/MacOS/neovide"
 
   zap trash: "~/Library/Saved Application State/com.neovide.neovide"
