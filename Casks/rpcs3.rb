@@ -7,7 +7,6 @@ cask "rpcs3" do
   name "RPCS3"
   desc "PS3 emulator/debugger"
   homepage "https://rpcs3.net/"
-  depends_on "p7zip"
 
   livecheck do
     url "https://github.com/RPCS3/rpcs3-binaries-mac/releases"
