@@ -1,9 +1,9 @@
 cask "gui-for-clash" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.9.8"
-  sha256 arm:   "e0daa071a934a69eb33a9af85bf4991b462f8584be8f200299b9981678b034d7",
-         intel: "c3d0598435e0cc25e848aadc3c9a4951a713afd72e602d328f0dd37c70220ce0"
+  version "1.9.9"
+  sha256 arm:   "ad32cf40cf4931cb3a3eac2a28eca3cfe86eb9e3dfb69973456963f6e4ffd4b4",
+         intel: "2c43df60df9ae8ac01e8b1c5b75345af4aec623b72261fc919c175018c23b8e4"
 
   url "https://github.com/GUI-for-Cores/GUI.for.Clash/releases/download/v#{version}/GUI.for.Clash-darwin-#{arch}.zip"
   name "gui-for-clash"
