@@ -27,7 +27,6 @@ brew "<formula>"
 + [spotube](https://github.com/KRTirtho/spotube): 使用 youtube 作为后端源的音乐播放器
 + [AirBattery](https://github.com/lihaoyun6/AirBattery): 在Mac上获取你所有设备的电量信息并显示在Dock / 状态栏 / 小组件上! 
 + [VimMotion](https://github.com/dwarvesf/VimMotionApp): Access macOS UI elements with your fingers stay on keyboard. Inspired by vim-easymotion & avy-mode. 
-+ [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
 + [Alexandria](https://github.com/btpf/Alexandria): ebook reader tools
 + [Ryujinx](https://ryujinx.org/): switch 模拟器
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
@@ -58,3 +57,5 @@ brew "<formula>"
 + [cherry-studio](https://github.com/kangfenmao/cherry-studio) AI chat 客户端
 + [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web): A cross-platform ChatGPT/Gemini UI 
   - 它自2.16.0 版本后没有提供对应的 app 下载包
++ [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
+  - 对应的安装包需要自己编译
