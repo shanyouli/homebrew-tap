@@ -1,6 +1,6 @@
 cask "ryujinx" do
-  version "1.3.2"
-  sha256 "c157907318348999ce4fb8c8fe8ddd511f0ddea643f22b1529527390180cb700"
+  version "1.3.3"
+  sha256 "e4818bb84c98e0d3120691821e90772099e46101273d3f145ffdb10eee2c0dbb"
 
   url "https://git.ryujinx.app/api/v4/projects/1/packages/generic/Ryubing/#{version}/ryujinx-#{version}-macos_universal.app.tar.gz"
   name "Ryujinx"
@@ -9,7 +9,7 @@ cask "ryujinx" do
 
   livecheck do
     url "https://git.ryujinx.app/ryubing/ryujinx/-/releases.atom"
-    regex(%r{href=".*?/\-/releases/(\d+(?:\.\d+)+)["' >]}i)
+    regex(%r{href=".*?/-/releases/(\d+(?:\.\d+)+)["' >]}i)
   end
 
   depends_on macos: ">= :monterey"
