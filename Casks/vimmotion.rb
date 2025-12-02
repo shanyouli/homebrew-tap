@@ -11,7 +11,5 @@ cask "vimmotion" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :high_sierra"
-
   app "VimMotion.app"
 end

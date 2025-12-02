@@ -7,8 +7,6 @@ cask "upic" do
   name "uPic"
   homepage "https://github.com/gee1k/uPic"
 
-  depends_on macos: ">= :sierra"
-
   app "uPic.app"
   shimscript = "#{staged_path}/upic.wrapper.sh"
   binary shimscript, target: "upic"
