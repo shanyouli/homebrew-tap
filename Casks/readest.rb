@@ -1,6 +1,6 @@
 cask "readest" do
-  version "0.9.81"
-  sha256 "61431075dfea247b62f47367cdf7c5277d559b4ff1590de8dfab69602ef25511"
+  version "0.9.95"
+  sha256 "491290ae3bdae7f9029e61b08e0757800964df6296fef5252c60fa8121571889"
 
   url "https://github.com/readest/readest/releases/download/v#{version}/Readest_#{version}_universal.dmg"
   name "readest"
@@ -12,8 +12,10 @@ cask "readest" do
     strategy :github_latest
   end
 
-  app "Readest.app"
   depends_on macos: ">= :monterey"
+
+  app "Readest.app"
+
   # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
   zap trash: [
     "~/Library/Application Support/com.bilingify.readest",
