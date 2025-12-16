@@ -1,6 +1,6 @@
 cask "petrichor" do
-  version "1.1.2"
-  sha256 "ea447632ee9c9205521d1d4ae3469225ab63fe3ed6c814018f0de16e7aca1e40"
+  version "1.3.0"
+  sha256 "302fb5e65d64817f0c8364f490c2f3bd81646757d57a4cdbc0859c315143d57f"
 
   url "https://github.com/kushalpandya/Petrichor/releases/download/v#{version}/Petrichor-#{version}-Universal.dmg"
   name "Petrichor"
@@ -13,6 +13,8 @@ cask "petrichor" do
     regex(/^v?(\d+(?:\.\d+)+(?:-(alpha|beta)-\d+)?)$/i)
   end
 
+  depends_on macos: ">= :sonoma"
+
   app "Petrichor.app"
 
   zap trash: [
@@ -21,7 +23,7 @@ cask "petrichor" do
     "~/Library/Preferences/org.Petrichor.plist",
     "~/Library/Saved Application State/org.Petrichor.savedState",
   ]
-  depends_on macos: ">= :sonoma"
+
   caveats <<~EOS
     Petrichor is currently in alpha. Expect bugs and breaking changes.
 
