@@ -24,7 +24,7 @@ cask "rpcs3" do
   app "RPCS3.app"
 
   zap trash: ""
-
+  depends_on macos: ">= :sonoma"
   caveats do
     requires_rosetta
   end

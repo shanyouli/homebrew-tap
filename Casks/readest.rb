@@ -13,7 +13,7 @@ cask "readest" do
   end
 
   app "Readest.app"
-
+  depends_on macos: ">= :monterey"
   # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
   zap trash: [
     "~/Library/Application Support/com.bilingify.readest",

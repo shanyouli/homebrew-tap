@@ -21,7 +21,7 @@ cask "petrichor" do
     "~/Library/Preferences/org.Petrichor.plist",
     "~/Library/Saved Application State/org.Petrichor.savedState",
   ]
-
+  depends_on macos: ">= :sonoma"
   caveats <<~EOS
     Petrichor is currently in alpha. Expect bugs and breaking changes.
 
