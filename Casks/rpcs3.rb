@@ -1,6 +1,6 @@
 cask "rpcs3" do
-  version "0.0.37,18152,9524211b,9524211b9adc7459fa3d770623615bb3503bbff9"
-  sha256 "267c1109a289cbc6f6d908fff75ed0638a3788333d2082d186a5d9ab4b0091f2"
+  version "0.0.38,18514,cf87f245,cf87f24587754cd3869430d0df6d396985db3165"
+  sha256 "18727e3d8eba17db8a768b88c8aced35f62dee93b4747ad1ed85f34d31fbd73b"
 
   url "https://github.com/RPCS3/rpcs3-binaries-mac/releases/download/build-#{version.csv.fourth}/rpcs3-v#{version.csv.first}-#{version.csv.second}-#{version.csv.third}_macos.7z",
       verified: "github.com/RPCS3/rpcs3-binaries-mac/"
@@ -21,10 +21,12 @@ cask "rpcs3" do
     end
   end
 
+  depends_on macos: ">= :sonoma"
+
   app "RPCS3.app"
 
   zap trash: ""
-  depends_on macos: ">= :sonoma"
+
   caveats do
     requires_rosetta
   end
