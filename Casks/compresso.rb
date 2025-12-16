@@ -1,9 +1,10 @@
 cask "compresso" do
   arch arm: "aarch64", intel: "x64"
 
-  version "1.2.0"
-  sha256 arm:   "cc09c2e8bf033b14e5e0279c883af0686333d865a7ee18b6516db3330e30330e",
-         intel: "3b6e2231269355b0ef53035cbd308480f0d6d2d744c325ef4bc137652c39cfd4"
+  version "1.4.0"
+  sha256 arm:   "bc2820a5e2458175d8c77e58da600b71e718e3f6480b1ac876e8933726109bd4",
+         intel: "4d4424273eac3ef196145869a18a783f73f07ca57052d530ad4eee783e75b7fa"
+
   url "https://github.com/codeforreal1/compressO/releases/download/#{version}/CompressO_#{version}_#{arch}.dmg"
   name "compressO"
   desc "Convert any video into a tiny size"
