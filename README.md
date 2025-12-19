@@ -13,6 +13,10 @@ tap "shanyouli/tap"
 brew "<formula>"
 ```
 
+## Formula
+
++ [Mole](https://github.com/tw93/Mole): 命令行清理工具，可以用来取代 Tencent Lemon
+
 ## Casks
 
 + [AirBattery](https://github.com/lihaoyun6/AirBattery): 在Mac上获取你所有设备的电量信息并显示在Dock / 状态栏 / 小组件上! 
