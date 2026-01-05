@@ -40,6 +40,7 @@ brew "<formula>"
 + [neovide](https://github.com/neovide/neovide): neovim 的 GUI 工具，将 nvim 和 neovide 分离
 + [nuclear-music-player](https://nuclearplayer.com/): 开源流媒体音乐播放器
 + [petrichor](https://github.com/kushalpandya/Petrichor) 本地音乐播放器
++ [piliplus](https://github.com/bggRGjQaUbCoE/PiliPlus) 第三方 bilibili
 + [Quickrecorder](https://github.com/lihaoyun6/QuickRecorder) QuickRecorder 录屏工具
 + [readest](https://github.com/readest/readest) Readest is a modern, feature-rich ebook reader
 + [RPCS3](https://rpcs3.net/) ps3 模拟器
