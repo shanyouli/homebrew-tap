@@ -1,9 +1,9 @@
 cask "nuclear-player" do
   arch arm: "aarch64", intel: "x64"
 
-  version "0.0.10"
-  sha256 arm:   "1556af4283eb89ee381c672728262a73292aef7f8585058f153bd6e0617fe8c6",
-         intel: "52e709f07f0ebcf2df781968ac45d70d092ad604cb981b1c618f4eae4f4414e5"
+  version "1.0.0"
+  sha256 arm:   "9c9b05817253468945a3bd5ee1e628dd029a33e3d14d58b3a6023ab8db4976a3",
+         intel: "8198819d55308be72f104ecf5833b36fba9e9f3815aa4d3e06730456420ae56e"
 
   url "https://github.com/NuclearPlayer/nuclear-xrd/releases/download/player%40#{version}/nuclear-music-player_#{version}_#{arch}.dmg",
       verified: "github.com/NuclearPlayer/nuclear-xrd/"
