@@ -13,9 +13,41 @@ tap "shanyouli/tap"
 brew "<formula>"
 ```
 
+### yabai 安装建议
+
+>>> 如果你不想从最新的 commit 构建 yabai，建议直接使用官方仓库的 yabai
+
+- 第一次安装
+``` bash
+brew install shanyouli/tap/yabai --HEAD
+codesign -fs 'yabai-cert' $(brew --prefix yabai)/bin/yabai
+```
+
+- 后续更新
+
+``` sh
+# set codesigning certificate name here (default: yabai-cert)
+export YABAI_CERT=
+
+# stop yabai
+# yabai --stop-service
+
+# reinstall yabai (remove old service file because homebrew changes binary path)
+# yabai --uninstall-service
+brew reinstall shanyouli/tap/yabai
+codesign -fs "${YABAI_CERT:-yabai-cert}" "$(brew --prefix yabai)/bin/yabai"
+
+```
+
+sudo 授权
+``` sh
+echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+```
+
 ## Formula
 
 + [Mole](https://github.com/tw93/Mole): 命令行清理工具，可以用来取代 Tencent Lemon
++ [yabai](https://github.com/asmvik/yabai) 平铺窗口管理工具,主要是为了获取最新git 版本
 
 ## Casks
 
@@ -57,6 +89,8 @@ brew "<formula>"
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 
 ## 部分安装脚本来源
+
+Thanks.
 
 + [KRTirtho/homebrew-apps: Tap for hosting my app's Casks and formulas](https://github.com/KRTirtho/homebrew-apps/tree/main)
 + [lihaoyun6/homebrew-tap](https://github.com/lihaoyun6/homebrew-tap/tree/master)
