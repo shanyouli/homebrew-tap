@@ -13,7 +13,7 @@ cask "gui-for-singbox" do
   livecheck do
     url :url
     strategy :github_latest
-    regex(/^v?(\d+(?:\.\d+)+(?:-Alpha(?:-\d+)?)?)$/i)
+    regex(/^v?(\d+(?:\.\d+)+(?:-(?:Alpha|dev)(?:-\d+)?)?)$/i)
   end
 
   app "GUI.for.SingBox.app"
