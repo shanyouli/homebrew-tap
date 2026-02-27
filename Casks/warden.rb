@@ -14,7 +14,7 @@ cask "warden" do
   end
 
   app "Warden.app"
-  depends_on :macos => :sequoia
+  depends_on macos:  '>= :sequoia'
   zap trash: [
     "~/Library/Application Support/Warden",
     "~/Library/Preferences/com.SidhuK.Warden.plist",

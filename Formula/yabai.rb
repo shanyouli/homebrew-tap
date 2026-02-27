@@ -5,7 +5,7 @@ class Yabai < Formula
   sha256 "c4d5e31ad18afc8b46aa4cdaf5639088f044c72b3852787e9633db12d31a606b"
   head "https://github.com/asmvik/yabai.git"
 
-  depends_on :macos => :big_sur
+  depends_on macos:  ">= :big_sur"
 
   def install
     man.mkpath

@@ -15,10 +15,8 @@ cask "zyplayer" do
     strategy :github_latest
   end
 
-  depends_on macos: :monterey
-
   app "zyfun.app"
-
+  depends_on macos: ">= :monterey"
   zap trash: [
     "~/Library/Saved Application State/com.zyplayer.app.savedState",
     "~/Library/Saved Application State/com.zyplayer.savedState",

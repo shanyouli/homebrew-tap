@@ -1,6 +1,3 @@
-# Documentation: https://docs.brew.sh/Cask-Cookbook
-#                https://docs.brew.sh/Adding-Software-to-Homebrew#cask-stanzas
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 cask "flclash" do
   arch arm: "arm64", intel: "amd64"
 
@@ -18,11 +15,8 @@ cask "flclash" do
     strategy :github_latest
   end
 
-  # depends_on macos: ""
-
   app "FlClash.app"
 
-  # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
   zap trash: [
     "~/Library/Application Support/com.follow.clash",
     "~/Library/Caches/com.follow.clash",

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 cask 'emacs-app' do
   name 'Emacs'
   desc 'GNU Emacs text editor (known good nightly build)'
