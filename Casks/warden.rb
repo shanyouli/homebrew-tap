@@ -4,7 +4,7 @@ cask "warden" do
 
   url "https://github.com/SidhuK/WardenApp/releases/download/v#{version}/Warden.zip"
   name "Warden"
-  desc "Native macOS AI chat client supporting 10+ providers"
+  desc "Native AI chat client supporting 10+ providers"
   homepage "https://github.com/SidhuK/WardenApp"
 
   livecheck do
@@ -12,12 +12,14 @@ cask "warden" do
     strategy :github_latest
   end
 
+  depends_on macos: ">= :sequoia"
+
   app "Warden.app"
-  depends_on macos:  ">= :sequoia"
+
   zap trash: [
     "~/Library/Application Support/Warden",
-    "~/Library/Preferences/com.SidhuK.Warden.plist",
     "~/Library/Caches/com.SidhuK.Warden",
+    "~/Library/Preferences/com.SidhuK.Warden.plist",
     "~/Library/Saved Application State/com.SidhuK.Warden.savedState",
   ]
 end
