@@ -16,7 +16,7 @@ cask "zyplayer" do
   end
 
   app "zyfun.app"
-
+  depends_on :macos => :monterey
   zap trash: [
     "~/Library/Saved Application State/com.zyplayer.app.savedState",
     "~/Library/Saved Application State/com.zyplayer.savedState",
