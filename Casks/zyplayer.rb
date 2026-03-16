@@ -1,9 +1,9 @@
 cask "zyplayer" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.4.2"
-  sha256 arm:   "ed190ea74884319d1293b04be80fdbe2b878e955461444e245a98f3b8f308df4",
-         intel: "52b18a97c4c14e5ca183a9197b01e1250fd6d83873849b971fac43c3a6311d86"
+  version "3.4.3"
+  sha256 arm:   "34cb7eac7073c1c621813c02439df559926a31849905ebfdb84fa934e3a0be2c",
+         intel: "28b3d2e4f5300db3ab6a7ef1a9c8b1304bccf2ce3aa373b59ab415d3849398e2"
 
   url "https://github.com/Hiram-Wong/ZyPlayer/releases/download/v#{version}/zyfun-mac-#{version}-#{arch}.dmg"
   name "zyplayer"
@@ -15,8 +15,10 @@ cask "zyplayer" do
     strategy :github_latest
   end
 
-  app "zyfun.app"
   depends_on macos: ">= :monterey"
+
+  app "zyfun.app"
+
   zap trash: [
     "~/Library/Saved Application State/com.zyplayer.app.savedState",
     "~/Library/Saved Application State/com.zyplayer.savedState",
