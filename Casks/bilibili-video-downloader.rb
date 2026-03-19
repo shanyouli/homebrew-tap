@@ -1,9 +1,9 @@
 cask "bilibili-video-downloader" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.1.1"
-  sha256 arm:   "579ba91d7d12a522e6f205bd920246ac7d0921bfc417c402abf8233383373e1a",
-         intel: "ef8626b190c4d042b86d256590af9d44b5cb55936dfeeeca22caef74a7f579fe"
+  version "0.2.0"
+  sha256 arm:   "31a396c3f8e3398154f2ee976182056516aa656af3e368115addfaf8baf4266a",
+         intel: "c9fd86f70bffa441da9babae8fcd462cd841c2d543b0d85d29970b197ac0d0d6"
 
   url "https://github.com/lanyeeee/bilibili-video-downloader/releases/download/v#{version}/bilibili-video-downloader_#{version}_macos_#{arch}.dmg"
   name "bilibili-video-downloader"
