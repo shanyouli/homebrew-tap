@@ -64,6 +64,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [DashPlayer](https://github.com/solidSpoon/DashPlayer): 看视频学习双语
 + [emacs](https://github.com/jimeh/emacs-builds): 来自 jimeh 的构建良好的 emacs
 + [FlClash](https://github.com/chen08209/FlClash): 另一个 clash 客户端
++ [fmusic](https://github.com/wandercn/fmusic): 又一款 music
 + [GUI.for.Clash](https://github.com/GUI-for-Cores/GUI.for.Clash) clash 客户端
 + [GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox) singBox 客户端
 + [launchpader](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
