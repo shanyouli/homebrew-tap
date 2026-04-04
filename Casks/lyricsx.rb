@@ -2,7 +2,8 @@ cask "lyricsx" do
   version "1.8.0,2026-03-21.12-32-44"
   sha256 "082662bbba4ad0576315a45bbf6eba5393362f6d5b1924e88c60d8e77806bbe1"
 
-  url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v#{version.csv.first}/LyricsX.#{version.csv.second}.zip"
+  # url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v#{version.csv.first}/LyricsX.#{version.csv.second}.zip"
+  url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v#{version.csv.first}/LyricsX_#{version.csv.first}%2B#{version.csv.second}.zip"
   name "LyricsX"
   desc "Ultimate Lyrics App"
   homepage "https://github.com/MxIris-LyricsX-Project/LyricsX"
@@ -10,15 +11,15 @@ cask "lyricsx" do
   livecheck do
     url "https://github.com/MxIris-LyricsX-Project/LyricsX/releases"
     # https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v1.7.4/LyricsX_1.7.4+2563.zip
-    # regex(%r{/v(\d+(\.\d+){2})/LyricsX_(\d+(\.\d+){2})%2B(\d{4})\.zip}i) #1 5
+    regex(%r{/v(\d+(\.\d+){2})/LyricsX_(\d+(\.\d+){2})%2B(\d{4})\.zip}i) #1 5
     # https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v1.8.0/LyricsX.2026-03-21.12-32-44.zip
-    regex(%r{/v(\d+(\.\d+){2})/LyricsX[\._](.*)\.zip}i) # 1 3
+    # regex(%r{/v(\d+(\.\d+){2})/LyricsX[\._](.*)\.zip}i) # 1 3
     strategy :github_latest do |json, regex|
       json["assets"]&.map do |asset|
         match = asset["browser_download_url"]&.match(regex)
         next if match.blank?
 
-        "#{match[1]},#{match[3]}"
+        "#{match[1]},#{match[5]}"
       end
     end
   end
