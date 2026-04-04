@@ -26,7 +26,7 @@ cask "lyricsx" do
 
   conflicts_with cask: "lyricsx"
 
-  app "*/LyricsX.app"
+  app "LyricsX.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.JH.LyricsX",
