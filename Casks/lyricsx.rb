@@ -12,7 +12,7 @@ cask "lyricsx" do
     # https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v1.7.4/LyricsX_1.7.4+2563.zip
     # regex(%r{/v(\d+(\.\d+){2})/LyricsX_(\d+(\.\d+){2})%2B(\d{4})\.zip}i) #1 5
     # https://github.com/MxIris-LyricsX-Project/LyricsX/releases/download/v1.8.0/LyricsX.2026-03-21.12-32-44.zip
-    regex(%r{/v(\d+(\.\d+){2})/LyricsX\.(.*)\.zip}i) # 1 3
+    regex(%r{/v(\d+(\.\d+){2})/LyricsX[\._](.*)\.zip}i) # 1 3
     strategy :github_latest do |json, regex|
       json["assets"]&.map do |asset|
         match = asset["browser_download_url"]&.match(regex)

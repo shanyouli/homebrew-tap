@@ -58,7 +58,6 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [bilibili-video-downloader](https://github.com/lanyeeee/bilibili-video-downloader) bilibili downloader 
 + [chatgpt](https://github.com/lencx/ChatGPT) lencx chatgpt 客户端
 + [chatmlx](https://github.com/johnmai-dev/ChatMLX) MLX 语言模型，来自 hugging face
-+ [Clash.Verge](https://github.com/clash-verge-rev/clash-verge-rev): clash 客户端
 + [compressO](https://github.com/codeforreal1/compressO) 视频压缩工具
 + [cozy-reader](https://github.com/srsng/cozy-reader) epub reader, 目前版本0.1.19 无法工作
 + [DashPlayer](https://github.com/solidSpoon/DashPlayer): 看视频学习双语
@@ -101,6 +100,7 @@ Thanks.
 ## archive
 + [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
 + [cherry-studio](https://github.com/kangfenmao/cherry-studio) AI chat 客户端
++ [Clash.Verge](https://github.com/clash-verge-rev/clash-verge-rev): clash 客户端
 + [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web): A cross-platform ChatGPT/Gemini UI 
   - 它自2.16.0 版本后没有提供对应的 app 下载包
 + [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
