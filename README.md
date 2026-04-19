@@ -56,6 +56,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [apprhyme](https://github.com/canxin121/app_rhyme) 音乐播放器支持 酷狗，网易云音源
 + [aural](https://github.com/kartik-venugopal/aural-player): 音乐播放器
 + [bilibili-video-downloader](https://github.com/lanyeeee/bilibili-video-downloader) bilibili downloader 
++ [cc-switch](https://github.com/farion1231/cc-switc) The All-in-One Manager for Claude Code, Codex, Gemini CLI, OpenCode & OpenClaw
 + [chatgpt](https://github.com/lencx/ChatGPT) lencx chatgpt 客户端
 + [chatmlx](https://github.com/johnmai-dev/ChatMLX) MLX 语言模型，来自 hugging face
 + [compressO](https://github.com/codeforreal1/compressO) 视频压缩工具
