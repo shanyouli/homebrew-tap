@@ -68,6 +68,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [GUI.for.Clash](https://github.com/GUI-for-Cores/GUI.for.Clash) clash 客户端
 + [GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox) singBox 客户端
 + [launchpader](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
++ [lite-edit](https://github.com/arietan/lite-edit) 轻量级、快速代码编辑器
 + [LyricsX](https://github.com/MxIris-LyricsX-Project/LyricsX): 歌词显示工具
 + [mind-map](https://github.com/wanglin2/mind-map) 思维导图
 + [mountmate](https://homielab.com/page/mountmate) 外接硬盘管理挂载管理工具
