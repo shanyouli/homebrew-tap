@@ -59,6 +59,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [cc-switch](https://github.com/farion1231/cc-switc) The All-in-One Manager for Claude Code, Codex, Gemini CLI, OpenCode & OpenClaw
 + [chatgpt](https://github.com/lencx/ChatGPT) lencx chatgpt 客户端
 + [chatmlx](https://github.com/johnmai-dev/ChatMLX) MLX 语言模型，来自 hugging face
++ [clashbar](https://github.com/Sitoi/ClashBar) 有一个 clash 客户端
 + [compressO](https://github.com/codeforreal1/compressO) 视频压缩工具
 + [cozy-reader](https://github.com/srsng/cozy-reader) epub reader, 目前版本0.1.19 无法工作
 + [DashPlayer](https://github.com/solidSpoon/DashPlayer): 看视频学习双语
