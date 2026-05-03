@@ -73,6 +73,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [LyricsX](https://github.com/MxIris-LyricsX-Project/LyricsX): 歌词显示工具
 + [mind-map](https://github.com/wanglin2/mind-map) 思维导图
 + [mountmate](https://homielab.com/page/mountmate) 外接硬盘管理挂载管理工具
++ [MrRSS](https://github.com/WCY-dt/MrRSS) modern, cross-platform, and free AI RSS reader.
 + [museeks](https://museeks.io/) music 播放器
 + [neovide](https://github.com/neovide/neovide): neovim 的 GUI 工具，将 nvim 和 neovide 分离
 + [nuclear-music-player](https://nuclearplayer.com/): 开源流媒体音乐播放器
