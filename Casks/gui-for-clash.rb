@@ -1,9 +1,9 @@
 cask "gui-for-clash" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.23.2"
-  sha256 arm:   "85d012fa3f1d509e63a86c1fb30e1ad92e48e95d8313c9671832d750b7dd0e3f",
-         intel: "6dcb4802764c6d5ff105abaf2c32427c71e0dd11aab182086f16c7087fce9308"
+  version "1.24.1"
+  sha256 arm:   "3745029f9de3d644b286168374afe2b88c7b7866faa586533215f5724a91beb5",
+         intel: "582cf797772c1ffc04d99f30c2a218b67f9d9d5cf211db0885c4b0d71fcca5c9"
 
   url "https://github.com/GUI-for-Cores/GUI.for.Clash/releases/download/v#{version}/GUI.for.Clash-darwin-#{arch}.zip"
   name "gui-for-clash"
@@ -15,6 +15,8 @@ cask "gui-for-clash" do
     strategy :github_latest
     regex(/^v?(\d+(?:\.\d+)+(?:-(?:Alpha|dev)(?:(?:-|\.)\d+)?)?)$/i)
   end
+
+  depends_on :macos
 
   app "GUI.for.Clash.app"
 
