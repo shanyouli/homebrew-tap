@@ -89,7 +89,6 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
 + [VimMotion](https://github.com/dwarvesf/VimMotionApp): Access macOS UI elements with your fingers stay on keyboard. Inspired by vim-easymotion & avy-mode. 
 + [warden](https://github.com/SidhuK/WardenApp)
-+ [wiliwili](https://github.com/xfangfang/wiliwili): bilibil 第三方工具
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 
 ## 部分安装脚本来源
@@ -109,3 +108,4 @@ Thanks.
   - 它自2.16.0 版本后没有提供对应的 app 下载包
 + [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
   - 对应的安装包需要自己编译
++ [wiliwili](https://github.com/xfangfang/wiliwili): bilibil 第三方工具,piliplus 取代
