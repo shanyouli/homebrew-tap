@@ -1,6 +1,6 @@
 cask "warden" do
-  version "1.06"
-  sha256 "5f0110698bb1b2763634a2d091d7c5fd518ee81559e3ddd19090b79be769ca17"
+  version "1.08"
+  sha256 "edc714d5421b13074344b9d2c449623be993388c8c71002b96d777b3829834e7"
 
   url "https://github.com/SidhuK/WardenApp/releases/download/v#{version}/Warden.zip"
   name "Warden"
@@ -12,7 +12,7 @@ cask "warden" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "Warden.app"
 
