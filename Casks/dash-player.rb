@@ -17,5 +17,4 @@ cask "dash-player" do
 
   app "DashPlayer.app"
 
-  zap trash: ""
 end
