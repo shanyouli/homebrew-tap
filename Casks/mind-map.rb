@@ -1,9 +1,9 @@
 cask "mind-map" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.18.3"
-  sha256 arm:   "39f58c6a308be171d11b26507b5e15de54f0200866db32e8f0f7ff8e1555c2e2",
-         intel: "aa965782d40bbb0a381564ffcf18921cb40c5ba4b97d75db948d627e4eabef55"
+  version "0.19.0"
+  sha256 arm:   "3af90de473a655f1cf388ae3562e532775f0ed6b105ec98df08aaa6297274e1f",
+         intel: "f84d8c231451c5bd104529d001c164ccfea0089a54a8ff2bb1e3f023eb27e8e6"
 
   url "https://github.com/wanglin2/mind-map/releases/download/#{version}/-mac-#{version}-#{arch}.dmg"
   name "mind-map"
@@ -15,6 +15,8 @@ cask "mind-map" do
     strategy :page_match
     regex(%r{href=.*?/tag/(\d+(?:\.\d+)+)["' >]}i)
   end
+
+  depends_on :macos
 
   app "思绪思维导图.app"
 
