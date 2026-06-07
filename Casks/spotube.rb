@@ -1,6 +1,6 @@
 cask "spotube" do
-  version "5.1.1"
-  sha256 "91441d2d66b0b48561cde3b935f51ae37e4939feff48254185229f421dc9f7a2"
+  version "5.1.2"
+  sha256 "27627dfd44190040af1a6ba6a86cdc4450399296a43a616940a94ae687ac0913"
 
   url "https://github.com/KRTirtho/spotube/releases/download/v#{version}/Spotube-macos-universal.dmg",
       verified: "github.com/KRTirtho/spotube/"
@@ -12,6 +12,8 @@ cask "spotube" do
     url "https://github.com/KRTirtho/spotube"
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "spotube.app"
 
