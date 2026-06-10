@@ -1,9 +1,9 @@
 cask "zyplayer" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.4.6"
-  sha256 arm:   "25514476a8d924001549e8cac2eefad82601b8e0742750506440153a1b5747f9",
-         intel: "3a5dad960f1ac348208de55e230db1540ac626cebf948da0ad9e5e7b9bff8823"
+  version "3.4.7"
+  sha256 arm:   "197bfc912a8717d445a5c2929964992eb2149b45545aa6ef7aa23170a3487be5",
+         intel: "190461e0c7eaec1740adfbc0184bc4fc8966e19da65ef64f9c16b449ebe45a5f"
 
   url "https://github.com/Hiram-Wong/ZyPlayer/releases/download/v#{version}/zyfun-mac-#{version}-#{arch}.dmg"
   name "zyplayer"
