@@ -42,7 +42,9 @@ jobs:
             | xargs -L1 -I{} gh api -X DELETE repos/${{ github.repository }}/git/refs/heads/{}
       - name: Homebrew env
         uses: ./.github/actions/homebrew-env
-
+      - name: trust taps
+        run: |
+          brew trust shanyouli/tap
       - name: Brew Tap
         uses: ./.github/actions/brew-tap
         with:
