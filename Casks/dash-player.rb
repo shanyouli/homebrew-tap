@@ -15,6 +15,7 @@ cask "dash-player" do
     strategy :github_latest
   end
 
-  app "DashPlayer.app"
+  depends_on macos: :monterey
 
+  app "DashPlayer.app"
 end
