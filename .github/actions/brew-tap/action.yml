@@ -14,8 +14,13 @@ runs:
         HOMEBREW_GITHUB_API_TOKEN: ${{ inputs.HOMEBREW_GITHUB_API_TOKEN }}
       shell: bash -ieo pipefail {0}
       run: |
+        # Clean up stale update locks left by the previous install.sh run to
+        # avoid "Another `brew update` process is already running" conflicts.
+        rm -rf "$(brew --prefix)/var/homebrew/locks/" 2>/dev/null || true
         brew tap shanyouli/tap
-        brew update
+        # Drop the redundant `brew update`: install.sh already updated Homebrew
+        # and `brew tap` just synced this tap repository, so running `brew
+        # update` again immediately would race for the update lock.
 
     - name: Install Homebrew's dependencies
       shell: bash -ieo pipefail {0}
