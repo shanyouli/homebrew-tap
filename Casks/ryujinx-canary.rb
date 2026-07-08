@@ -12,7 +12,7 @@ cask "ryujinx-canary" do
   end
 
   conflicts_with cask: "ryujinx"
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "ryujinx.app"
 

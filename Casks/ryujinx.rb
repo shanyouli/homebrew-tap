@@ -12,7 +12,7 @@ cask "ryujinx" do
     regex(%r{href=".*?/-/releases/(\d+(?:\.\d+)+)["' >]}i)
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "ryujinx.app"
 

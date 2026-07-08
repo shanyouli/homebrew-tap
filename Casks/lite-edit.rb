@@ -12,7 +12,7 @@ cask "lite-edit" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "LiteEdit.app"
 

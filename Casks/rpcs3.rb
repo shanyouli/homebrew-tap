@@ -21,7 +21,7 @@ cask "rpcs3" do
     end
   end
 
-  depends_on macos: :sonoma
+  depends_on macos: :sequoia
 
   app "RPCS3.app"
 
