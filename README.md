@@ -88,7 +88,6 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [stillcolor](https://github.com/aiaf/Stillcolor) 外置显示屏闪烁，修复工具
 + [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
-+ [VimMotion](https://github.com/dwarvesf/VimMotionApp): Access macOS UI elements with your fingers stay on keyboard. Inspired by vim-easymotion & avy-mode. 
 + [warden](https://github.com/SidhuK/WardenApp)
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 
@@ -109,4 +108,6 @@ Thanks.
   - 它自2.16.0 版本后没有提供对应的 app 下载包
 + [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
   - 对应的安装包需要自己编译
++ [VimMotion](https://github.com/dwarvesf/VimMotionApp): 用键盘访问 macOS UI 元素，灵感来自 vim-easymotion & avy-mode
+  - 上游仓库 dwarvesf/VimMotionApp 已删除（404），无可用下载源，故归档
 + [wiliwili](https://github.com/xfangfang/wiliwili): bilibil 第三方工具,piliplus 取代

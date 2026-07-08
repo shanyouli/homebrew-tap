@@ -5,8 +5,7 @@ cask "ccx-desktop" do
   sha256 arm:   "93928f629bc8a7216b50d6512c34897f11bd20db986d614758821f3eee408b40",
          intel: "1c7517d81f59ad1a45de9b8738d0ed20db9bfc7927595f7f918c40e60c6352ad"
 
-  url "https://github.com/BenedictKing/ccx/releases/download/v#{version}/CCX-Desktop-#{version}-darwin-#{arch}.dmg",
-      verified: "github.com/BenedictKing/ccx/"
+  url "https://github.com/BenedictKing/ccx/releases/download/v#{version}/CCX-Desktop-#{version}-darwin-#{arch}.dmg"
   name "CCX Desktop"
   desc "Multi-upstream AI API proxy and protocol conversion gateway"
   homepage "https://github.com/BenedictKing/ccx"
