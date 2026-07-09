@@ -88,6 +88,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [stillcolor](https://github.com/aiaf/Stillcolor) 外置显示屏闪烁，修复工具
 + [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
++ [vicinae]("https://vicinae.com/): 官方已经存在，Raycast 的替代工具
 + [warden](https://github.com/SidhuK/WardenApp)
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 
