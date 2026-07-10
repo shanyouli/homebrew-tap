@@ -57,16 +57,12 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [aural](https://github.com/kartik-venugopal/aural-player): 音乐播放器
 + [bilibili-video-downloader](https://github.com/lanyeeee/bilibili-video-downloader) bilibili downloader 
 + [ccx-desktop](https://github.com/BenedictKing/ccx): AI API 代理与协议转换网关
-+ [chatgpt](https://github.com/lencx/ChatGPT) lencx chatgpt 客户端
 + [chatmlx](https://github.com/johnmai-dev/ChatMLX) MLX 语言模型，来自 hugging face
 + [clashbar](https://github.com/Sitoi/ClashBar) 有一个 clash 客户端
 + [compressO](https://github.com/codeforreal1/compressO) 视频压缩工具
 + [cozy-reader](https://github.com/srsng/cozy-reader) epub reader, 目前版本0.1.19 无法工作
 + [DashPlayer](https://github.com/solidSpoon/DashPlayer): 看视频学习双语
-+ [emacs](https://github.com/jimeh/emacs-builds): 来自 jimeh 的构建良好的 emacs
-+ [FlClash](https://github.com/chen08209/FlClash): 另一个 clash 客户端
 + [fmusic](https://github.com/wandercn/fmusic): 又一款 music
-+ [GUI.for.Clash](https://github.com/GUI-for-Cores/GUI.for.Clash) clash 客户端
 + [GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox) singBox 客户端
 + [launchpader](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
 + [lite-edit](https://github.com/arietan/lite-edit) 轻量级、快速代码编辑器
@@ -103,8 +99,14 @@ Thanks.
 ## archive
 + [cc-switch](https://github.com/farion1231/cc-switc) The All-in-One Manager for Claude Code, Codex, Gemini CLI, OpenCode & OpenClaw
 + [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
++ [chatgpt](https://github.com/lencx/ChatGPT): lencx chatgpt 客户端
+  - 官方已存在对应包，且长期未更新，故归档
 + [cherry-studio](https://github.com/kangfenmao/cherry-studio) AI chat 客户端
 + [Clash.Verge](https://github.com/clash-verge-rev/clash-verge-rev): clash 客户端
++ [FlClash](https://github.com/chen08209/FlClash): clash 客户端
+  - 存在多个 clash 客户端，仅保留一个正在使用的，故归档
++ [GUI.for.Clash](https://github.com/GUI-for-Cores/GUI.for.Clash) clash 客户端
+  - 同上，仅保留一个正在使用的 clash 客户端，故归档
 + [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web): A cross-platform ChatGPT/Gemini UI 
   - 它自2.16.0 版本后没有提供对应的 app 下载包
 + [SimpleLive](https://github.com/xiaoyaocz/dart_simple_live): 简简单单的看直播
