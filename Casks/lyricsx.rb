@@ -24,7 +24,7 @@ cask "lyricsx" do
     end
   end
 
-  conflicts_with cask: "lyricsx"
+  # conflicts_with cask: "lyricsx"
   depends_on :macos
 
   app "LyricsX.app"
