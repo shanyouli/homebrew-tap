@@ -1,9 +1,9 @@
 cask "dash-player" do
   arch arm: "arm64", intel: "x64"
 
-  version "6.5.0"
-  sha256 arm:   "20bd9e5ded0f58cee368eb2da8f1270b69e8516dceed54da62795d40c830c392",
-         intel: "b839bd0bf7479152025718af3ce8bf11ed5581cae624f4e014363d7a09877ce5"
+  version "6.6.0"
+  sha256 arm:   "a72d4a24f04b5c1ed023bff41e0a38001c2f8c46fd70f9efe831ffcb19b8d8c0",
+         intel: "4a3e3a09264cc218ee46e629780d91fca51c007c8d9cd62c7ec1b764753a1499"
 
   url "https://github.com/solidSpoon/DashPlayer/releases/download/v#{version}/DashPlayer-#{version}-#{arch}.dmg"
   name "dash-player"
