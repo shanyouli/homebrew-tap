@@ -1,6 +1,6 @@
 cask "ryujinx-canary" do
-  version "1.3.340"
-  sha256 "01f8486d5aecae6c9abdf3412965406643a24639123f36e0628387ca0623ab61"
+  version "1.3.351"
+  sha256 "bcdac85194e89e6f5ad19282b91af7a5f8c8a08aa908040750b688028efa7212"
 
   url "https://git.ryujinx.app/Ryubing/Canary/releases/download/#{version}/ryujinx-canary-#{version}-macos_universal.app.tar.gz"
   name "Ryujinx"
@@ -15,7 +15,7 @@ cask "ryujinx-canary" do
   conflicts_with cask: "ryujinx"
   depends_on macos: :monterey
 
-  app "ryujinx.app"
+  app "Ryujinx.app"
 
   zap trash: [
     "~/Library/Application Support/CrashReporter/Ryujinx_1EA4C51C-1E99-5395-A3A6-456A7C843B09.plist",
