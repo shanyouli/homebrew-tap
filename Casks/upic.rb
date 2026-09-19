@@ -16,7 +16,7 @@ cask "upic" do
     strategy :github_latest
   end
 
-  preflight do
+  preflight_steps do
     IO.write shimscript, <<~EOS
       #!/bin/bash
       '#{appdir}/uPic.app/Contents/MacOS/uPic' "$@"

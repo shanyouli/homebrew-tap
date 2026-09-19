@@ -5,8 +5,7 @@ cask "tmexclude" do
   mirror = "https://mirror.ghproxy.com/"
   origin = "https://github.com/PhotonQuantum/tmexclude/releases/download/v#{version}/TimeMachine.Exclude_#{version}_universal.dmg"
 
-  url "#{mirror}#{origin}",
-      verified: "mirror.ghproxy.com/"
+  url "#{mirror}#{origin}"
   name "TimeMachine Exclude"
   desc "Exclude undesired files (node_modules, target, etc) from your TimeMachine backup"
   homepage "https://github.com/PhotonQuantum/tmexclude"
