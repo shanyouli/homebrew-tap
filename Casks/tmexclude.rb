@@ -16,12 +16,13 @@ cask "tmexclude" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "TimeMachine Exclude.app"
 
   zap trash: [
+    "~/Library/Application Support/me.lightquantum.tmexclude",
     "~/Library/Preferences/me.lightquantum.tmexclude.plist",
     "~/Library/Saved Application State/me.lightquantum.tmexclude.savedState",
-    "~/Library/Application Support/me.lightquantum.tmexclude",
   ]
 end

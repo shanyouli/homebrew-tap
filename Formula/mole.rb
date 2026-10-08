@@ -1,20 +1,19 @@
 class Mole < Formula
   desc "Comprehensive macOS cleanup and application uninstall tool"
   homepage "https://github.com/tw93/mole"
-  version "1.13.13"
   url "https://github.com/tw93/Mole/archive/refs/tags/V#{version}.tar.gz"
+  version "1.13.13"
   sha256 "9e1b1a5eb0751430abe69f2f94c4df5f7ce88fba1eadf661bfa9cff7921794d5"
   license "MIT"
 
   # Requires macOS-specific features
-  depends_on :macos
-
   livecheck do
     url "https://github.com/tw93/Mole"
     strategy :github_latest
     # regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  depends_on :macos
 
   def install
     # Install all library files to libexec
