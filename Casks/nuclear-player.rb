@@ -5,8 +5,7 @@ cask "nuclear-player" do
   sha256 arm:   "a4d7bba5ada6f3d2135d27b5b9e753f83386b376332c849346005fb9d45af9e7",
          intel: "ec31531c7c301a7fc9df88da28635250b5334599cdbda3bfa94b5019ce8bbdd4"
 
-  url "https://github.com/NuclearPlayer/nuclear-xrd/releases/download/player%40#{version}/nuclear-music-player_#{version}_#{arch}.dmg",
-      verified: "github.com/NuclearPlayer/nuclear-xrd/"
+  url "https://github.com/NuclearPlayer/nuclear-xrd/releases/download/player%40#{version}/nuclear-music-player_#{version}_#{arch}.dmg"
   name "nuclear-player"
   desc "Streaming music player that finds free music for you"
   homepage "https://nuclearplayer.com/"

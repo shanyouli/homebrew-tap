@@ -1,54 +1,62 @@
 name: schedule
 
 on:
-  # pull_request:
-  #   branches: [main]
-  # push:
-  #   branches: [fix-*]
+  # 每 3 天 02:00 UTC 检查一次 cask 更新
   schedule:
-    # Every 24 hours
     - cron: "0 2 */3 * *"
-    # Every day at 6am
-    # - cron: "0 6 * * *"
   # allow run manually
   workflow_dispatch:
 
-permissions: write-all
+permissions:
+  contents: write # 推送 bump- 分支
+  pull-requests: write # brew pr-automerge 打开/合并 PR
+
+# 定时与手动触发共用同一个 group：两次运行并发会互相删除 bump-* 分支并抢推同一个分支
+concurrency:
+  group: bump-${{ github.repository }}
+  cancel-in-progress: false
+
+env:
+  HOMEBREW_NO_ANALYTICS: "1"
+  HOMEBREW_NO_ENV_HINTS: "1"
 
 jobs:
   casks:
-    name: Bump Casks in parallel
-    if: github.repository == 'shanyouli/homebrew-tap'
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest]
+    name: Bump Casks
+    if: github.repository_owner == 'shanyouli'
+    runs-on: macos-latest
+    timeout-minutes: 90
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          persist-credentials: false # 推送凭证由 HOMEBREW_GITHUB_API_TOKEN 注入
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+      - name: Homebrew env
+        uses: ./.github/actions/homebrew-env
+
+      - name: trust tap
+        run: |
+          brew trust shanyouli/tap
+
+      - name: Brew Tap
+        uses: ./.github/actions/brew-tap
+        with:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
 
       - name: Delete all remote bump- branches
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api repos/${{ github.repository }}/git/refs/heads \
-            | jq -r '.[].ref' \
-            | grep '^refs/heads/bump-' \
-            | sed 's|refs/heads/||' \
-            | xargs -L1 -I{} gh api -X DELETE repos/${{ github.repository }}/git/refs/heads/{}
-      - name: Homebrew env
-        uses: ./.github/actions/homebrew-env
-      - name: trust taps
-        run: |
-          brew trust shanyouli/tap
-      - name: Brew Tap
-        uses: ./.github/actions/brew-tap
-        with:
-          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
+          # refs API 默认 30 条/页，必须 --paginate，否则 bump-* 分支清不干净
+          gh api --paginate --jq '.[].ref' \
+            "repos/${{ github.repository }}/git/refs/heads?per_page=100" \
+            | sed -n 's|^refs/heads/bump-|bump-|p' \
+            | while read -r branch; do
+                echo "delete ${branch}"
+                gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}"
+              done
 
       - name: Bump casks
         uses: ./.github/actions/bump-casks
@@ -60,6 +68,8 @@ jobs:
           HOMEBREW_GITHUB_API_TOKEN: ${{secrets.HOMEBREW_GITHUB_API_TOKEN}}
         run: |
           brew pr-automerge --autosquash --tap shanyouli/tap
+
+      # 保持原有语义：先把成功的 PR 合掉，再对失败的 casks 报错
       - name: check brew bump caks error
         run: |
           if [[ -s ./error.log ]]; then
@@ -67,48 +77,3 @@ jobs:
              cat ./error.log
              exit 1
           fi
-
-  check_formula:
-    runs-on: ubuntu-latest
-    outputs:
-      dir_exists: ${{ steps.check_dir.outputs.exists }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Check if directory exists
-        id: check_dir
-        run: |
-          if [ -d "./Formula" ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-
-  formulas:
-    name: Bump Formulae in parallel
-    needs: check_formula
-    if: github.repository == 'shanyouli/homebrew-tap' && needs.check_formula.outputs.dir_exists == 'true'
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest]
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-
-      - name: Homebrew env
-        uses: ./.github/actions/homebrew-env
-
-      - name: Brew Tap
-        uses: ./.github/actions/brew-tap
-        with:
-          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}
-
-      # - name: Bump formulae
-      #   uses: ./.github/actions/bump-formulas
-      #   with:
-      #     HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_GITHUB_API_TOKEN }}

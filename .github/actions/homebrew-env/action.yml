@@ -1,4 +1,5 @@
 name: Homebrew Action
+description: Ensure a recent Homebrew is available on PATH
 
 runs:
   using: 'composite'
@@ -7,11 +8,17 @@ runs:
     - name: Set up Homebrew
       shell: bash -ieo pipefail {0}
       run: |
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        # GitHub 托管的 macOS runner 已预装 Homebrew（arm64 在 /opt/homebrew，Intel 在
+        # /usr/local），无需再跑 install.sh 重装：那既慢又会与后续 brew 命令抢 update 锁。
+        eval "$(brew shellenv)"
 
-    - name: Add Homebrew to PATH
-      shell: bash -ieo pipefail {0}
-      run: |
-        touch $HOME/.bash_profile
-        (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.bash_profile
-        eval "$(/usr/local/bin/brew shellenv)"
+        # `eval` 只影响当前 shell，把 brew 目录写进 GITHUB_PATH 供后续 step 使用。
+        echo "$(brew --prefix)/bin" >> "$GITHUB_PATH"
+        echo "$(brew --prefix)/sbin" >> "$GITHUB_PATH"
+
+        # 清掉上一次 update 残留的锁，避免 "Another `brew update` process is already running"
+        rm -rf "$(brew --prefix)/var/homebrew/locks/" 2>/dev/null || true
+
+        # 保持 Homebrew 及本 tap 为最新，等价于原 install.sh 的更新效果
+        brew update --quiet
+        brew --version

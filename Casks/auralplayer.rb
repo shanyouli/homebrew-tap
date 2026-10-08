@@ -4,7 +4,7 @@ cask "auralplayer" do
 
   url "https://github.com/kartik-venugopal/aural-player/releases/download/v#{version}/AuralPlayer-#{version}.dmg"
   name "AuralPlayer"
-  desc "An audio player for macOS, inspired by Winamp."
+  desc "Audio player inspired by Winamp"
   homepage "https://github.com/kartik-venugopal/aural-player"
 
   livecheck do
@@ -12,10 +12,12 @@ cask "auralplayer" do
     strategy :github_latest
   end
 
+  depends_on :macos
+
   app "Aural.app"
 
   zap trash: [
+    "~/Library/Preferences/com.kv.Aural.plist",
     "~/Library/Saved Application State/com.kv.Aural.savedState/",
-    "~/Library/Preferences/com.kv.Aural.plist"
   ]
 end

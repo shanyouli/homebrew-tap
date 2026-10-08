@@ -64,14 +64,14 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [DashPlayer](https://github.com/solidSpoon/DashPlayer): 看视频学习双语
 + [fmusic](https://github.com/wandercn/fmusic): 又一款 music
 + [GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox) singBox 客户端
-+ [launchpader](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
++ [launchpadder](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
 + [lite-edit](https://github.com/arietan/lite-edit) 轻量级、快速代码编辑器
 + [LyricsX](https://github.com/MxIris-LyricsX-Project/LyricsX): 歌词显示工具
 + [mind-map](https://github.com/wanglin2/mind-map) 思维导图
 + [mountmate](https://homielab.com/page/mountmate) 外接硬盘管理挂载管理工具
 + [MrRSS](https://github.com/WCY-dt/MrRSS) modern, cross-platform, and free AI RSS reader.
 + [museeks](https://museeks.io/) music 播放器
-+ [neovide](https://github.com/neovide/neovide): neovim 的 GUI 工具，将 nvim 和 neovide 分离
++ [neovide-pure](https://github.com/neovide/neovide): neovim 的 GUI 工具，将 nvim 和 neovide 分离
 + [nuclear-music-player](https://nuclearplayer.com/): 开源流媒体音乐播放器
 + [petrichor](https://github.com/kushalpandya/Petrichor) 本地音乐播放器
 + [piliplus](https://github.com/bggRGjQaUbCoE/PiliPlus) 第三方 bilibili
@@ -84,7 +84,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [stillcolor](https://github.com/aiaf/Stillcolor) 外置显示屏闪烁，修复工具
 + [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
-+ [vicinae]("https://vicinae.com/): 官方已经存在，Raycast 的替代具
++ [vicinae](https://vicinae.com/): 官方已经存在，Raycast 的替代工具
 + [warden](https://github.com/SidhuK/WardenApp)
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 
@@ -97,7 +97,7 @@ Thanks.
 + [dwarvesf--homebrew-tap](https://github.com/dwarvesf/homebrew-tap)
 
 ## archive
-+ [cc-switch](https://github.com/farion1231/cc-switc) The All-in-One Manager for Claude Code, Codex, Gemini CLI, OpenCode & OpenClaw
++ [cc-switch](https://github.com/farion1231/cc-switch) The All-in-One Manager for Claude Code, Codex, Gemini CLI, OpenCode & OpenClaw
 + [Calibre](https://calibre-ebook.com/dist/osx): 电子书阅读管理工具
 + [chatgpt](https://github.com/lencx/ChatGPT): lencx chatgpt 客户端
   - 官方已存在对应包，且长期未更新，故归档

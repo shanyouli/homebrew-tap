@@ -4,13 +4,15 @@ cask "chatmlx" do
 
   url "https://github.com/johnmai-dev/ChatMLX/releases/download/#{version}/ChatMLX.#{version}.dmg"
   name "chatmlx"
-  desc "Is a modern open-source high-performance chat application"
+  desc "Modern open-source high-performance chat application"
   homepage "https://github.com/johnmai-dev/ChatMLX"
 
   livecheck do
     url :url
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "ChatMLX.app"
 

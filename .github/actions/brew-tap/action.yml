@@ -1,4 +1,5 @@
 name: Brew Tap
+description: Trust the tap, install bump dependencies and set up the committer identity
 
 inputs:
   HOMEBREW_GITHUB_API_TOKEN:
@@ -14,30 +15,22 @@ runs:
         HOMEBREW_GITHUB_API_TOKEN: ${{ inputs.HOMEBREW_GITHUB_API_TOKEN }}
       shell: bash -ieo pipefail {0}
       run: |
-        # Clean up stale update locks left by the previous install.sh run to
-        # avoid "Another `brew update` process is already running" conflicts.
-        rm -rf "$(brew --prefix)/var/homebrew/locks/" 2>/dev/null || true
         brew tap shanyouli/tap
-        # Drop the redundant `brew update`: install.sh already updated Homebrew
-        # and `brew tap` just synced this tap repository, so running `brew
-        # update` again immediately would race for the update lock.
 
     - name: Install Homebrew's dependencies
       shell: bash -ieo pipefail {0}
       run: |
-        brew install ripgrep sd gcc parallel coreutils
-        brew unlink coreutils && brew link coreutils
-        brew install-bundler-gems --groups "audit,style"
+        # 只装脚本真正用到的工具：gcc/coreutils 与 bundler gems 预装都已移除
+        # （brew bump-cask-pr 会自行安装它需要的 ast/style/audit gem 组）。
+        brew install ripgrep sd parallel
 
-    - uses: oleksiyrudenko/gha-git-credentials@v2-latest
-      with:
-        global: true
-        name: 'shanyouli-Bot'
-        email: 'shanyouli-bot@aliyun.com'
-        token: '${{ inputs.HOMEBREW_GITHUB_API_TOKEN }}'
-
-    - name: show git context
+    - name: Set up committer identity
       shell: bash -ieo pipefail {0}
       run: |
-        cat $HOME/.gitconfig
-        cat $GITHUB_ENV
+        # 推送凭证无需任何第三方 action：brew bump-cask-pr 会用
+        # HOMEBREW_GITHUB_API_TOKEN 把 token 注入 push URL（见 Homebrew bump.rb
+        # 的 add_auth_token_to_url!），这里只需要提交者身份。
+        git config --global user.name 'shanyouli-Bot'
+        git config --global user.email 'shanyouli-bot@aliyun.com'
+        git config --global --get user.name
+        git config --global --get user.email

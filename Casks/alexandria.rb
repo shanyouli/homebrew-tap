@@ -4,13 +4,15 @@ cask "alexandria" do
 
   url "https://github.com/btpf/Alexandria/releases/download/v0.12/Alexandria_#{version}_x64.dmg"
   name "alexandria"
-  desc "Minimalistic cross-platform eBook reader built with Tauri, Epub.js, and Typescript"
+  desc "Minimalistic eBook reader built with Tauri, Epub.js, and TypeScript"
   homepage "https://github.com/btpf/Alexandria"
 
   livecheck do
     url :url
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "Alexandria.app"
 
