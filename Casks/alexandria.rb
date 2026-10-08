@@ -2,7 +2,7 @@ cask "alexandria" do
   version "0.12.0"
   sha256 "9a6405bb7626fa3611bbda4df524a64d0677edefffd4293ce81085ad3543a458"
 
-  url "https://github.com/btpf/Alexandria/releases/download/v0.12/Alexandria_#{version}_x64.dmg"
+  url "https://github.com/btpf/Alexandria/releases/download/v#{version}/Alexandria_#{version}_x64.dmg"
   name "alexandria"
   desc "Minimalistic eBook reader built with Tauri, Epub.js, and TypeScript"
   homepage "https://github.com/btpf/Alexandria"
