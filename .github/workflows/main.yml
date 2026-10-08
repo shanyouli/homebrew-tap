@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 90
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
@@ -85,7 +85,7 @@ jobs:
       dir_exists: ${{ steps.check_dir.outputs.exists }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # v2 运行在已弃用的 Node16 上，升级以保持可用
+        uses: actions/checkout@v7 # v2 运行在已弃用的 Node16 上，升级以保持可用
       - name: Check if directory exists
         id: check_dir
         run: |
@@ -108,7 +108,7 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
