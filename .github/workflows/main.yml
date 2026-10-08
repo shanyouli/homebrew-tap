@@ -13,7 +13,14 @@ on:
   # allow run manually
   workflow_dispatch:
 
-permissions: write-all
+# GITHUB_TOKEN 在本 workflow 只用于删除 bump- 分支；bump 提 PR/合并均走 HOMEBREW_GITHUB_API_TOKEN
+permissions:
+  contents: write
+
+# 定时与手动触发重叠时会互删 bump- 分支、抢推同一分支：串行排队而非取消
+concurrency:
+  group: bump-${{ github.repository }}
+  cancel-in-progress: false
 
 jobs:
   casks:
@@ -25,6 +32,8 @@ jobs:
       matrix:
         os: [macos-latest]
 
+    timeout-minutes: 90
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,7 +44,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api repos/${{ github.repository }}/git/refs/heads \
+          # refs API 默认每页 30 条，必须 --paginate，否则 bump- 分支超过 30 条时清不干净
+          gh api --paginate repos/${{ github.repository }}/git/refs/heads \
             | jq -r '.[].ref' \
             | grep '^refs/heads/bump-' \
             | sed 's|refs/heads/||' \
@@ -70,11 +80,12 @@ jobs:
 
   check_formula:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
       dir_exists: ${{ steps.check_dir.outputs.exists }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4 # v2 运行在已弃用的 Node16 上，升级以保持可用
       - name: Check if directory exists
         id: check_dir
         run: |
@@ -93,6 +104,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest]
+
+    timeout-minutes: 60
 
     steps:
       - uses: actions/checkout@v4

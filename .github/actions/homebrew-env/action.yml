@@ -7,11 +7,14 @@ runs:
     - name: Set up Homebrew
       shell: bash -ieo pipefail {0}
       run: |
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        # GitHub 托管的 macOS runner 已预装 Homebrew（arm64 在 /opt/homebrew，Intel 在
+        # /usr/local），无需 install.sh 重装：既慢，还可能与后续 brew 命令抢 update 锁。
+        eval "$(brew shellenv)"
+        # `eval` 只影响当前 step，把 brew 目录写入 GITHUB_PATH 供后续所有 step 使用，
+        # 效果等价于原先追加到 .bash_profile（且不会重复追加）。
+        echo "$(brew --prefix)/bin" >> "$GITHUB_PATH"
+        echo "$(brew --prefix)/sbin" >> "$GITHUB_PATH"
 
-    - name: Add Homebrew to PATH
-      shell: bash -ieo pipefail {0}
-      run: |
-        touch $HOME/.bash_profile
-        (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.bash_profile
-        eval "$(/usr/local/bin/brew shellenv)"
+        # install.sh 在已装 brew 时的效果等同于更新，这里保持同样的更新语义
+        brew update --quiet
+        brew --version

@@ -8,10 +8,12 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       pull-requests: write
       contents: write
-    if: github.actor == 'shanyouli'  # 替换为仓库所有者的 GitHub 用户名
+    # workflow_dispatch 手动触发时没有 PR 上下文，须排除，否则 gh pr merge 拿到空编号必失败
+    if: github.event_name == 'pull_request' && github.actor == 'shanyouli' # 替换为仓库所有者的 GitHub 用户名
     steps:
       - uses: actions/checkout@v4
       - name: Set up GitHub CLI

@@ -21,6 +21,7 @@ runs:
       # 1 * 60 * 24 = 1440 (because bump-pr will checkout a new branch and push to remote)
       # 1 concurrent parallel jobs, 1 second delay between jobs.
       run: |
+        # 扫描全部 cask：原 [b-z]* 会漏掉 a 开头的 cask（alexandria、airbattery 等）
         parallel -j1 --delay 1s --group --halt now,fail=1 \
           "./.github/actions/bump-casks/script.sh shanyouli/tap/{}" \
-          ::: $(ls $(brew --repository shanyouli/tap)/Casks/[b-z]*.rb | xargs -I {} basename {} .rb)
+          ::: $(ls $(brew --repository shanyouli/tap)/Casks/*.rb | xargs -I {} basename {} .rb)
