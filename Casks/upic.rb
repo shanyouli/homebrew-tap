@@ -7,39 +7,39 @@ cask "upic" do
   url "https://github.com/gee1k/uPic/releases/download/v#{version}/uPic.zip"
   # appcast "https://github.com/gee1k/uPic/releases.atom"
   name "uPic"
-  desc "uPic is a native, powerful, beautiful and simple picture and file upload tool for macOS"
+  desc "Native, powerful, beautiful and simple picture and file upload tool"
   homepage "https://github.com/gee1k/uPic"
 
-  auto_updates true
-
-  app "uPic.app"
-  shimscript = "#{staged_path}/upic.wrapper.sh"
-  binary shimscript, target: "upic"
-  
   livecheck do
     url :url
     strategy :github_latest
   end
 
-  preflight do
-    File.write shimscript, <<~EOS
+  auto_updates true
+  depends_on :macos
+
+  app "uPic.app"
+  binary "#{staged_path}/upic.wrapper.sh", target: "upic"
+
+  preflight_steps do
+    write_file "upic.wrapper.sh", <<~EOS
       #!/bin/bash
-      '#{appdir}/uPic.app/Contents/MacOS/uPic' "$@"
+      '{{appdir}}/uPic.app/Contents/MacOS/uPic' "$@"
     EOS
   end
 
   zap trash: [
-    "~/Library/Preferences/com.svend.uPic.plist",
-    "~/Library/Caches/com.svend.uPic",
-    "~/Library/Group Containers/group.svend.uPic",
-    "~/Library/Containers/com.svend.uPic.macos",
-    "~/Library/Containers/com.svend.uPic.macos.uPicShareExtension",
-    "~/Library/Containers/com.svend.uPic.macos.uPicActionExtension",
-    "~/Library/Containers/com.svend.uPic.macos.uPicAppIntentsExtension",
-    "~/Library/Application Scripts/group.svend.uPic",
     "~/Library/Application Scripts/com.svend.uPic.macos",
     "~/Library/Application Scripts/com.svend.uPic.macos.uPicActionExtension",
     "~/Library/Application Scripts/com.svend.uPic.macos.uPicAppIntentsExtension",
-    "~/Library/Application Scripts/com.svend.uPic.macos.uPicShareExtension"
+    "~/Library/Application Scripts/com.svend.uPic.macos.uPicShareExtension",
+    "~/Library/Application Scripts/group.svend.uPic",
+    "~/Library/Caches/com.svend.uPic",
+    "~/Library/Containers/com.svend.uPic.macos",
+    "~/Library/Containers/com.svend.uPic.macos.uPicActionExtension",
+    "~/Library/Containers/com.svend.uPic.macos.uPicAppIntentsExtension",
+    "~/Library/Containers/com.svend.uPic.macos.uPicShareExtension",
+    "~/Library/Group Containers/group.svend.uPic",
+    "~/Library/Preferences/com.svend.uPic.plist",
   ]
 end

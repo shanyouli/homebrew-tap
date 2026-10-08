@@ -16,6 +16,7 @@ cask "neovide-pure" do
   end
 
   conflicts_with cask: "neovide"
+  depends_on :macos
 
   app "Neovide.app"
   binary "#{appdir}/Neovide.app/Contents/MacOS/neovide"

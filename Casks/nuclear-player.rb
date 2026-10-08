@@ -16,6 +16,8 @@ cask "nuclear-player" do
     strategy :github_latest
   end
 
+  depends_on :macos
+
   app "nuclear-music-player.app"
 
   zap trash: [

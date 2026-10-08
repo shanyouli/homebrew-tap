@@ -15,6 +15,8 @@ cask "compresso" do
     strategy :github_latest
   end
 
+  depends_on :macos
+
   app "CompressO.app"
 
   zap trash: [
