@@ -1,8 +1,8 @@
 cask "alexandria" do
-  version "0.12.0"
-  sha256 "9a6405bb7626fa3611bbda4df524a64d0677edefffd4293ce81085ad3543a458"
+  version "0.13.2"
+  sha256 "b8a1369e124f9c9c0d49f4de89295f248cbd4fe36dfc5865c61683433efdb3e0"
 
-  url "https://github.com/btpf/Alexandria/releases/download/v#{version}/Alexandria_#{version}_x64.dmg"
+  url "https://github.com/btpf/Alexandria/releases/download/v#{version}/Alexandria_#{version}_aarch64.dmg"
   name "alexandria"
   desc "Minimalistic eBook reader built with Tauri, Epub.js, and TypeScript"
   homepage "https://github.com/btpf/Alexandria"
@@ -12,6 +12,7 @@ cask "alexandria" do
     strategy :github_latest
   end
 
+  depends_on arch: :arm64
   depends_on :macos
 
   app "Alexandria.app"
@@ -22,8 +23,4 @@ cask "alexandria" do
     "~/Library/Saved Application State/com.btpf.alexandria.savedState",
     "~/Library/WebKit/com.btpf.alexandria",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end
