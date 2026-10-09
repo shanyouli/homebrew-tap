@@ -1,9 +1,9 @@
 cask "aqbot" do
   arch arm: "aarch64", intel: "x64"
 
-  version "0.0.114"
-  sha256 arm:   "2974707d822c906b9918845b53e3a0f3ccbb5c3f65c7809878bbf5cac12c2284",
-         intel: "a67332f4c25b76499f74242237a9be6cafcca17cbd99afc6e3d6f10d3858eb8f"
+  version "0.0.163"
+  sha256 arm:   "5491d230b44033f3e94c5cbc24f290c320a4de9f6aff271646e324efd0bda292",
+         intel: "2821f4c5bbfe3ab798baca77770e0ff3824d6e20d6449b244be4180950b630f9"
 
   url "https://github.com/AQBot-Desktop/AQBot/releases/download/v#{version}/AQBot_#{version}_#{arch}.dmg"
   name "aqbot"
