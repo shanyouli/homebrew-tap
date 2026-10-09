@@ -15,7 +15,7 @@ jobs:
     # workflow_dispatch 手动触发时没有 PR 上下文，须排除，否则 gh pr merge 拿到空编号必失败
     if: github.event_name == 'pull_request' && github.actor == 'shanyouli' # 替换为仓库所有者的 GitHub 用户名
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up GitHub CLI
         uses: ksivamuthu/actions-setup-gh-cli@v3
         with:
