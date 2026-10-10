@@ -1,6 +1,6 @@
 cask "piliplus" do
-  version "2.1.6,2.1.6,5453"
-  sha256 "db5f46836e71dbab03fb68c84710a0c6166ad9d0241188914813dc44252bba90"
+  version "2.1.6.1,2.1.6,5471"
+  sha256 "8f8478ec36cc3189d81c484d3da06880f8017df3111d58d21b5622b6a74e2410"
 
   url "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/#{version.csv.first}/PiliPlus_macos_#{version.csv.second}+#{version.csv.third}.dmg"
   name "piliplus"
