@@ -82,6 +82,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [snapbox](https://snapbox.app/): 依赖 ollama.app 的 ai 本地客户端， 可以使用 api
 + [spotube](https://github.com/KRTirtho/spotube): 使用 youtube 作为后端源的音乐播放器
 + [stillcolor](https://github.com/aiaf/Stillcolor) 外置显示屏闪烁，修复工具
++ [Tinycast](https://github.com/abue-ammar/tinycast) 原生 macOS 启动器（Raycast 替代），内存占用低于 100 MB，仅支持 arm64
 + [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
 + [vicinae](https://vicinae.com/): 官方已经存在，Raycast 的替代工具
