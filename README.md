@@ -67,6 +67,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [launchpadder](https://github.com/Molay/LaunchPadder) launchpad 排序工具。
 + [lite-edit](https://github.com/arietan/lite-edit) 轻量级、快速代码编辑器
 + [LyricsX](https://github.com/MxIris-LyricsX-Project/LyricsX): 歌词显示工具
++ [macapk](https://github.com/kksimp/Mac.apk) 在 Apple Silicon Mac 上原生运行 Android 应用（非模拟器/虚拟机），仅支持 arm64，需 macOS 26.4+
 + [mind-map](https://github.com/wanglin2/mind-map) 思维导图
 + [mountmate](https://homielab.com/page/mountmate) 外接硬盘管理挂载管理工具
 + [MrRSS](https://github.com/WCY-dt/MrRSS) modern, cross-platform, and free AI RSS reader.
