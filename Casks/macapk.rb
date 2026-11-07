@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 cask "macapk" do
-  version "1.0.2303"
-  sha256 "af32b4d7e972f761629549818759cf1866d8f7c3a89b6e96b1bc8de585565d39"
+  version "1.0.2379"
+  sha256 "4ab633e6559a33a281b97aa19f249f8aae8fd177275890695658a6b2ab88bad2"
 
   url "https://github.com/kksimp/Mac.apk/releases/download/v#{version}/macapk.dmg"
   name "Mac.apk"
