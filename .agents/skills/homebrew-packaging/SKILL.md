@@ -22,6 +22,7 @@ compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式�
 ## 输入与触发
 
 - 接受软件名、上游仓库 URL、指定版本、发布页或下载 URL；优先从已有配方和可信上游补齐缺项。
+- token 按 Homebrew tokenization 判定（无空格驼峰名直接全小写，如 `SpacePreview` → `spacepreview`，同 `QuickRecorder` → `quickrecorder` 先例）；与用户写法不一致时在交付中说明。
 - 用户指定版本时固定该版本，不因发现更新版本而擅自升级。
 - 用户只给软件名且存在同名项目时，先确认上游；不要猜仓库或下载域名。
 - 当主要任务为安装、系统排障、纯说明或代码审查时，不执行此创建流程。
@@ -33,7 +34,8 @@ compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式�
 3. 不编造 SHA-256、Intel 下载 URL、bundle identifier、最低系统要求或清理路径。
 4. 不通过 `sha256 :no_check`、占位摘要、弱化系统要求或跳过审计掩盖缺失信息。
 5. 不自动安装校验依赖，不静默修改缓存策略或信任配置；依赖缺失时报告阻塞。
-6. 仅加载可信本地 Ruby 配方。内容加载不是安全沙箱；不执行下载包里的程序、安装器或发布脚本。
+6. 仅加载可信本地 Ruby 配方。内容加载不是安全沙箱。下载包内的程序、安装器或发布脚本不静默执行；
+   是否下载并运行内部 app 做验证由用户决定，用户确认后按第 3 步流程执行（临时目录、移除隔离、验证后清理痕迹）。
 7. 不把离线审计通过说成真实安装、签名、公证或跨平台验证通过。
 8. 只有用户当轮明确要求提交，才使用提交工具；用户告知上次已提交不构成本轮授权。
 
@@ -46,8 +48,9 @@ compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式�
 | 操作 | 使用条件 |
 | --- | --- |
 | 查询官方文档、发布 API、固定版本的源码配置 | 本地证据不足，且需要确认版本、摘要、架构、安装产物或数据目录；允许必要、定向查询 |
-| 用 `scripts/inspect.rb` 下载安装包到 Homebrew 缓存（不安装） | 本地证据不足以确认 app 名称、bundle id、最低系统版本、架构、签名或 zap 候选时；请求用户当次授权（或交由用户自行运行）；只读检查，绝不安装 |
+| 用 `scripts/inspect.rb` 下载安装包到 Homebrew 缓存（不安装） | 本地证据不足以确认 app 名称、bundle id、最低系统版本、架构或签名，或 zap 缺少可靠上游参照（需运行时验证）时；**用 questionnaire 选择题提问**让用户选择验证深度；用户明确要求核验时直接执行 |
 | 人工解包或只读查看安装包 | inspect.rb 仅支持 DMG；其他格式（zip、pkg 等）人工解包后用 `--file` 复核，不启动软件 |
+| 运行 DMG 内 app 获取真实 zap 路径（拷贝临时目录、清理痕迹，不安装） | 用户在选择题中选择“下载并运行验证”后执行，属标准流程；运行未签名/未公证应用前说明风险；结束必须清理 ~/Library 落盘与临时目录，报告每项产生与否 |
 | `brew livecheck`、`brew audit --online`、`brew audit --new` | 不是默认验收；确需时取得当轮明确授权。`--new` 不能当离线严格检查使用 |
 | `brew install`、`reinstall`、`upgrade`、实际 `test do` | 改变环境或执行软件；只有用户单独要求/授权才执行 |
 
@@ -84,13 +87,13 @@ https://api.github.com/repos/<owner>/<repo>/releases/tags/<tag>
 
 ### 3. 核对安装与卸载元数据
 
-证据优先级：制品检查（授权后下载到缓存）→ 固定 tag 的上游源码/打包配置 → 上游维护的 cask → 本机安装痕迹。
+证据优先级：制品检查及其运行时验证（用户决定后下载到缓存并运行）→ 固定 tag 的上游源码/打包配置 → 上游维护的 cask → 本机安装痕迹。
 制品检查天然对应精确版本，不受主分支演进影响；源码检索只作补充或回退，且须对照固定 tag。
 
 需要联网确认制品信息时，用 skill 的 `scripts/inspect.rb` 检查草稿配方（下载到 Homebrew 缓存，不安装）：
 
 ```sh
-# 下载并只读检查（按项目联网约定取得当次授权后执行，或交由用户自行运行）
+# 下载与否由用户决定；用户同意后执行，或交由用户自行运行
 HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/inspect.rb -- Casks/winc.rb
 
 # 指定架构解析多架构配方
@@ -106,9 +109,18 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/in
 - `app`/binary 名称以制品为准，不凭 DMG 文件名猜（如 Winc 的 DMG 叫 `Winc-*.dmg`，包内是 `winc.app`）。
 - `LSMinimumSystemVersion` 记入交付说明；本仓库 `Homebrew/OSDependsOn` cop 判定 cask 中的最低 macOS 版本冗余，配方统一写 `depends_on :macos`。
 - 签名与公证状态来自 inspect 的 codesign 检查，据此决定是否需要 Gatekeeper caveat。
-- `zap`：inspect 输出的候选只是候选，逐项需要运行时或源码证据；候选与实际证据冲突时以实际证据为准
-  （如应用按产品名而非 bundle id 存数据：Winc 的候选是 `com.deeix.winc`，实际写入 `Application Support/winc`）。
-  无证据不写入。不因为 bundle id 看起来合理就补齐所有常见目录；不使用宽泛通配符，不删除用户文档、Markdown 笔记或共享数据。
+- 需要下载 DMG 时，用 questionnaire 工具提出单选题（问题中附文件大小与目的），选项：
+  ① 下载并运行验证（推荐）——下载到缓存 + 运行内部 app 核对 zap 落盘 + 清理痕迹；
+  ② 仅下载核验——只做 inspect 元数据与 SHA-256 核验，不运行；
+  ③ 跳过——不下载，zap 按源码/框架证据写入并标注触发条件。
+  用户在对话中明确要求下载核验时不再重复提问。
+- `zap` 以运行时验证为准（经选择题由用户决定，不安装）：用户选择“下载并运行验证”后，把内部 app 拷贝到临时目录并移除
+  quarantine 标记（等价于 caveats 中“右键打开”的手动放行）后运行，核对 `~/Library` 实际落盘；正常退出后
+  再核对一次（Saved Application State 仅在正常退出时可能写入）。验证后逐项清理运行痕迹并复核无残留。
+- 对照运行实况调整配方 zap：运行产生且可安全清理的路径写入配方；未产生但有源码/框架证据的项标注
+  触发条件保留（如开机自启的 LaunchAgents 需在应用内开启才写入）；既未产生又无证据的路径不写入。
+  inspect 候选只是起点，候选与实际落盘冲突时以实际为准（Winc 的候选按 bundle id，实际写入产品名目录）。
+  不因为 bundle id 看起来合理就补齐所有常见目录；不使用宽泛通配符，不删除用户文档、Markdown 笔记或共享数据。
 - 配置目录包含未保存内容/恢复数据时，说明 `zap` 会删除哪些数据。无法确认路径时报告缺项，不捏造，也不冒称 `zap :not_required`。
 - pkg/installer 的卸载应依据上游安装行为确认，不能直接照搬 app 的卸载策略；inspect 仅支持 DMG，其他格式人工解包。
 
@@ -122,8 +134,9 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/in
 - `livecheck` 根据真实 tag/发布策略编写，但默认只校验声明，不联网执行。
 - 不使用已弃用的 `preflight` / `postflight`，改用 `preflight_steps` / `postflight_steps` / `uninstall_preflight_steps` / `uninstall_postflight_steps`；
   其中写文件用 `write_file`（默认 `base: :staged_path`，内容中 `#{appdir}` 改用 `{{appdir}}` 模板变量），不用 `File.write`。
-- stanza 顺序以 Homebrew 的 `STANZA_GROUPS` 为准（`arch`/`version`/`url` 信息组 → `livecheck` → `auto_updates`/`conflicts_with`/`depends_on` →
+- stanza 顺序以本机 Homebrew 的 `STANZA_GROUPS` 为准（`arch`/`version`/`sha256`/`url` 信息组 → `livecheck` → `auto_updates`/`conflicts_with`/`depends_on` →
   artifact 组 → `*_steps` → `uninstall` → `zap` → `caveats`），错位会被 `Cask/StanzaOrder` 判违规。
+  注意 `caveats` 是最后一组、写在 `zap` 之后，不是 artifact 组之前。
 - 按证据添加 app/binary、uninstall、zap；不盲信 `brew style --fix`（如对 `Cask/Desc` 的自动修正会产出不通顺文案），须人工复核修正结果。
 - 排查校验失败时按根因归类：一个 stanza 缺陷可能连带多条报错，不要按报错条数判断问题数量。
 
@@ -165,14 +178,14 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/va
 1. 修改文件、版本、平台/架构和关键安装/清理信息。
 2. SHA-256 与关键元数据的来源；单来源或未经安装包实测的限制。
 3. 执行的验证命令、退出码、失败/阻塞项。
-4. 待用户手动执行的联网/安装检查；不要冒称全部验收通过。
+4. 用户跳过下载/运行验证时，说明 zap 的证据等级（源码/框架证据与触发条件），不冒称运行时验证通过。
 5. 是否提交；未获当轮授权时保持未提交。
 
 ## 自检与回归
 
 - [ ] 类型、token、版本和 artifact 精确匹配。
 - [ ] 摘要有来源，架构和系统要求不是推测。
-- [ ] app/binary/uninstall/zap 的关键路径有依据。
+- [ ] app/binary/uninstall/zap 的关键路径有依据；下载过 DMG 的 zap 经运行时验证，未产生项标注触发条件。
 - [ ] 没有跨版本套用元数据或删除用户文档的通配符。
 - [ ] 项目规则与必要联网授权边界已遵守。
 - [ ] 文件级审计、样式及 diff 检查通过，未知项明确披露。

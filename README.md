@@ -82,6 +82,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [RPCS3](https://rpcs3.net/) ps3 模拟器
 + [Ryujinx](https://ryujinx.org/): switch 模拟器
 + [snapbox](https://snapbox.app/): 依赖 ollama.app 的 ai 本地客户端， 可以使用 api
++ [spacepreview](https://spacepreview.likh.cn/): 空格键文件预览工具，临时签名未公证，首启需放行 Gatekeeper
 + [spotube](https://github.com/KRTirtho/spotube): 使用 youtube 作为后端源的音乐播放器
 + [stillcolor](https://github.com/aiaf/Stillcolor) 外置显示屏闪烁，修复工具
 + [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
