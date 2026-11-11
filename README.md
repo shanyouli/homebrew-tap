@@ -87,6 +87,7 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 + [tmexclude](https://github.com/PhotonQuantum/tmexclude): macos 官方备份工具过滤设置
 + [uPic](https://github.com/gee1k/uPic): 图床管理工具，最新版需要自己编译
 + [warden](https://github.com/SidhuK/WardenApp)
++ [Winc](https://github.com/DEEIX-AI/Winc): Rust 实现的原生代码编辑器
 + [Zyplayer](https://github.com/Hiram-Wong/ZyPlayer): 跨平台桌面端视频资源播放器,免费高颜值. 
 
 ## 部分安装脚本来源

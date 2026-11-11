@@ -3,6 +3,7 @@
 
 require "open3"
 require "tmpdir"
+require_relative "../scripts/validate"
 
 # 不依赖额外测试库，通过子进程检查验证脚本的 CLI 与退出码。
 module ValidatorTest
@@ -44,12 +45,12 @@ module ValidatorTest
   module_function
 
   # 执行 CLI 并检查退出码和诊断文本。
-  # 参数：arguments 为路径/选项，status 为预期退出码，text 为预期文本，directory 为调用目录。
+  # 参数：arguments 为路径/选项，status 为预期退出码，text 为预期文本，directory 为调用目录，script 为验证入口。
   # 返回 nil；断言失败时抛出异常，成功时输出一条测试结果。
-  def check(arguments, status:, text:, directory:)
+  def check(arguments, status:, text:, directory:, script: SCRIPT)
     stdout, stderr, result = Open3.capture3(
       { "HOMEBREW_NO_AUTO_UPDATE" => "1" },
-      HOMEBREW_BREW_FILE.to_s, "ruby", SCRIPT, "--", *arguments, chdir: directory
+      HOMEBREW_BREW_FILE.to_s, "ruby", script, "--", *arguments, chdir: directory
     )
     output = stdout + stderr
     if result.exitstatus != status || text.any? { |expected| output.exclude?(expected) }
@@ -87,7 +88,16 @@ module ValidatorTest
             text: ["样式检查：2 个文件", "0 个审计失败，样式通过"], directory:)
       check(["Casks/"], status: 0, text: ["样式检查：1 个文件"], directory:)
       check(["."], status: 0, text: ["样式检查：2 个文件"], directory:)
-      check(["--all"], status: 0, text: [File.expand_path("../Casks/", __dir__)], directory:)
+      check(["--all"], status: 0, text: [(OfflineValidator::ROOT/"Casks").to_s], directory:)
+
+      # 不属于 Git 仓库的脚本副本不能猜测全量扫描根目录，但显式路径仍然可用。
+      copied_script = root/"copy/scripts/validate.rb"
+      copied_script.dirname.mkpath
+      copied_script.write(File.read(SCRIPT))
+      check(["--all"], status: 2, text: ["无法从脚本位置定位 Git 仓库"], directory:,
+            script: copied_script.to_s)
+      check([cask.to_s, formula.to_s], status: 0, text: ["样式检查：2 个文件"], directory:,
+            script: copied_script.to_s)
 
       formula.write(FORMULA.sub("class ValidationFixture", "class UnexpectedFixture"))
       check([formula.to_s], status: 1, text: ["FormulaClassUnavailableError"], directory:)

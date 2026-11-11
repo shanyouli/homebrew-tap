@@ -7,7 +7,7 @@ require "style"
 
 # 为本仓库的 cask 和 formula 提供不依赖 tap 注册状态的离线校验。
 module OfflineValidator
-  ROOT = Pathname(__dir__).parent.freeze
+  ROOT = Pathname(__dir__).ascend.find { |directory| (directory/".git").exist? }.freeze
   PACKAGE_DIRS = %w[Casks Formula].freeze
 
   module_function
@@ -28,6 +28,8 @@ module OfflineValidator
     raise ArgumentError, "请指定文件或目录，或使用 --all 校验全部配方" if !all && arguments.empty?
 
     targets = if all
+      raise ArgumentError, "无法从脚本位置定位 Git 仓库，请显式指定配方文件或目录" unless ROOT
+
       PACKAGE_DIRS.map { |directory| ROOT/directory }
     else
       arguments.map { |arg| Pathname(arg) }
@@ -110,7 +112,7 @@ module OfflineValidator
   def main(arguments)
     all = false
     parser = OptionParser.new do |options|
-      options.banner = "用法：brew ruby scripts/validate.rb -- [--all | 文件或目录 ...]"
+      options.banner = "用法：brew ruby #{__FILE__} -- [--all | 文件或目录 ...]"
       options.separator "默认必须指定路径；--all 扫描仓库的 Casks/ 和 Formula/，不扫描 archive/。"
       options.on("--all", "校验仓库全部配方（不能与路径混用）") { all = true }
       options.on("-h", "--help", "显示帮助") do
