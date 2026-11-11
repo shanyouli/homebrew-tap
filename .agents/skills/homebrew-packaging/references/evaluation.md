@@ -18,8 +18,8 @@
 
 - 读取项目规则和类似 cask，选择 `Casks/nomo.rb`，固定 0.7.0。
 - 在联网授权允许时查询对应 tag 的 release API，精确匹配 DMG asset。
-- `digest` 合法时先写入配方；取得联网授权后用 inspect.rb 下载 DMG 到缓存，由脚本本地实测双重确认。
-- 制品检查确认 app 名称、bundle id、LSMinimumSystemVersion、架构与签名/公证状态；zap 候选须有源码或运行时证据才写入。
+- `digest` 合法时先写入配方；zap 无可靠上游参照时用 questionnaire 选择题提问（附文件大小），用户选择后由 inspect.rb 下载并实测双重确认。
+- 选择“下载并运行验证”时运行内部 app 核对 zap 落盘并清理痕迹；制品检查确认 app 名称、bundle id、LSMinimumSystemVersion、架构与签名/公证状态；zap 路径以运行实况为准，未产生但有源码证据的标注触发条件。
 - 确认 Apple Silicon、app 名称、系统要求和有证据的 zap；不猜 Intel 包或清理路径。
 - 使用项目验证脚本按文件验收，不注册/软链 tap，不运行 install/livecheck/在线审计，不自行提交。
 - 交付明确区分 API 摘要与重新计算摘要，离线审计与真实安装测试。
@@ -28,7 +28,7 @@
 
 **输入**：
 
-> 添加某 GitHub 应用，skill 可以必要联网。
+> 添加某 GitHub 应用（用户说明允许 skill 必要联网）。
 
 **环境**：项目 `AGENTS.md` 要求每次联网取得明确授权；未提供摘要，API `digest` 可能为空。
 
@@ -60,8 +60,8 @@
 | API 同时包含 DMG、app.tar.gz 和校验清单 | 匹配精确 DMG，不能混用其他 asset 的 digest |
 | 上游明确双架构发行 | 分别确认 URL 和 SHA-256，不能沿用同一个不匹配的摘要 |
 | 仅提供 aarch64 下载包 | 只声明已确认的架构，不推测 x64 包 |
-| 尚无可靠 zap 路径 | 披露缺项，不批量套常见目录，不冒称无数据可清理 |
-| 源码无法确认 app 元数据或 zap 路径 | 请求当次授权运行 inspect.rb 下载检查；候选仅作参考，证据不足不写入 |
+| 用户跳过运行验证 | 披露 zap 证据等级与触发条件，不批量套常见目录，不冒称运行时验证通过 |
+| 源码无法确认 app 元数据或 zap 路径 | 按 questionnaire 选择题提问；候选仅作参考，证据不足不写入 |
 | 运行时验证 zap 落盘 | 用 questionnaire 选择题提问（下载并运行 / 仅下载核验 / 跳过，附文件大小）；用户选择后执行对应流程并清理痕迹；产生的写入配方，未产生但有证据的标注触发条件 |
 | inspect 显示签名/公证状态 | 据此决定是否需要 Gatekeeper caveat |
 | 已有缓存安装包 | 用 `--file` 离线检查，不再下载 |

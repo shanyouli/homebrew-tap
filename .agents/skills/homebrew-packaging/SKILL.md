@@ -6,7 +6,7 @@ description: >
   当用户要求添加 Homebrew 配方、编写 cask/formula 或更新软件版本时使用。
   优先离线验证，仅为补齐必要元数据或安装产物信息联网；遵守项目联网授权限制。
   不用于仅安装软件、brew 环境排障、纯命令解释或只审查现有改动。
-compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式依赖；不自动安装依赖。
+compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式依赖；不自动安装依赖。选择题提问使用 questionnaire 工具，不可用时退化为对话中的文本选项提问。
 ---
 
 # Homebrew 配方创建与更新
@@ -16,8 +16,9 @@ compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式�
 创建最小、可维护、有证据支持的配方，优先复用项目验证工具，不为了单个新配方生成临时审计命令。
 默认输出代码与验证结果，不执行安装、不自行提交。
 
-本 skill 与脚本属于项目资源。文中的 `scripts/`、`tests/`、`references/` 路径均相对于本 skill 目录，
-不是项目根目录。执行前用本 skill 的实际路径解析绝对路径。
+本 skill 与脚本属于项目资源。文中单独出现的 `scripts/`、`tests/`、`references/` 短路径相对本 skill.md 所在目录；
+第 3、5 步的完整命令示例为从 Git 仓库根运行的路径（本仓库即 `.agents/skills/homebrew-packaging/...`）。
+两个基准不可混用，执行前按 skill 实际位置解析。
 
 ## 输入与触发
 
@@ -34,8 +35,8 @@ compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式�
 3. 不编造 SHA-256、Intel 下载 URL、bundle identifier、最低系统要求或清理路径。
 4. 不通过 `sha256 :no_check`、占位摘要、弱化系统要求或跳过审计掩盖缺失信息。
 5. 不自动安装校验依赖，不静默修改缓存策略或信任配置；依赖缺失时报告阻塞。
-6. 仅加载可信本地 Ruby 配方。内容加载不是安全沙箱。下载包内的程序、安装器或发布脚本不静默执行；
-   是否下载并运行内部 app 做验证由用户决定，用户确认后按第 3 步流程执行（临时目录、移除隔离、验证后清理痕迹）。
+6. 仅加载可信本地 Ruby 配方，内容加载不是安全沙箱；不静默执行下载包内的程序、安装器或发布脚本——
+   是否下载并运行内部 app 做验证由用户决定，确认后按第 3 步流程执行（临时目录、移除隔离、验证后清理痕迹）。
 7. 不把离线审计通过说成真实安装、签名、公证或跨平台验证通过。
 8. 只有用户当轮明确要求提交，才使用提交工具；用户告知上次已提交不构成本轮授权。
 
@@ -48,7 +49,7 @@ compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式�
 | 操作 | 使用条件 |
 | --- | --- |
 | 查询官方文档、发布 API、固定版本的源码配置 | 本地证据不足，且需要确认版本、摘要、架构、安装产物或数据目录；允许必要、定向查询 |
-| 用 `scripts/inspect.rb` 下载安装包到 Homebrew 缓存（不安装） | 本地证据不足以确认 app 名称、bundle id、最低系统版本、架构或签名，或 zap 缺少可靠上游参照（需运行时验证）时；**用 questionnaire 选择题提问**让用户选择验证深度；用户明确要求核验时直接执行 |
+| 用 `scripts/inspect.rb` 下载安装包到 Homebrew 缓存（不安装） | 本地证据不足以确认 app 名称、bundle id、最低系统版本、架构或签名，或 zap 缺少可靠上游参照（需运行时验证）时；**用 questionnaire 选择题提问**让用户选择验证方式（下载并运行 / 仅下载 / 跳过）；用户明确要求核验时不再重复提问 |
 | 人工解包或只读查看安装包 | inspect.rb 仅支持 DMG；其他格式（zip、pkg 等）人工解包后用 `--file` 复核，不启动软件 |
 | 运行 DMG 内 app 获取真实 zap 路径（拷贝临时目录、清理痕迹，不安装） | 用户在选择题中选择“下载并运行验证”后执行，属标准流程；运行未签名/未公证应用前说明风险；结束必须清理 ~/Library 落盘与临时目录，报告每项产生与否 |
 | `brew livecheck`、`brew audit --online`、`brew audit --new` | 不是默认验收；确需时取得当轮明确授权。`--new` 不能当离线严格检查使用 |
@@ -80,20 +81,20 @@ https://api.github.com/repos/<owner>/<repo>/releases/tags/<tag>
 - 摘要来自 API 时记录这一来源；没有下载并自行计算就不要声称“已重新校验安装包”。
 - `digest` 缺失、为空、格式不正确时，先找可信 SHA-256 清单或精确版本的本地缓存，再按联网策略下载目标包计算。
 - MD5 清单、签名文件内容和 app 归档摘要不能代替对应 DMG 的 SHA-256。
-- 授权运行 inspect 后，脚本会在本地实测下载文件的 SHA-256：与 API digest 一致即双重确认，不一致时立即停下核对（asset 可能被替换）。
+- 用户选择下载核验后（选择题选项①/②），脚本会在本地实测下载文件的 SHA-256：与 API digest 一致即双重确认，不一致时立即停下核对（asset 可能被替换）。
 - 只为需求所需的架构生成分支；只有 aarch64 安装包时不要推测存在 x64 包。
 
 非 GitHub 上游按同一原则处理：用户指定版本、精确 artifact、可信摘要、最小下载。
 
 ### 3. 核对安装与卸载元数据
 
-证据优先级：制品检查及其运行时验证（用户决定后下载到缓存并运行）→ 固定 tag 的上游源码/打包配置 → 上游维护的 cask → 本机安装痕迹。
+证据优先级：制品检查及其运行时验证（用户决定后下载到缓存并运行）→ 固定 tag 的上游源码/打包配置与上游维护的 cask（均须对照适用版本）→ 本机安装痕迹。
 制品检查天然对应精确版本，不受主分支演进影响；源码检索只作补充或回退，且须对照固定 tag。
 
 需要联网确认制品信息时，用 skill 的 `scripts/inspect.rb` 检查草稿配方（下载到 Homebrew 缓存，不安装）：
 
 ```sh
-# 下载与否由用户决定；用户同意后执行，或交由用户自行运行
+# 是否下载由用户在选择题中决定；用户也可自行在终端运行
 HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/inspect.rb -- Casks/winc.rb
 
 # 指定架构解析多架构配方
@@ -109,7 +110,8 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/in
 - `app`/binary 名称以制品为准，不凭 DMG 文件名猜（如 Winc 的 DMG 叫 `Winc-*.dmg`，包内是 `winc.app`）。
 - `LSMinimumSystemVersion` 记入交付说明；本仓库 `Homebrew/OSDependsOn` cop 判定 cask 中的最低 macOS 版本冗余，配方统一写 `depends_on :macos`。
 - 签名与公证状态来自 inspect 的 codesign 检查，据此决定是否需要 Gatekeeper caveat。
-- 需要下载 DMG 时，用 questionnaire 工具提出单选题（问题中附文件大小与目的），选项：
+- **何时提问**：离线证据不足以确认元数据，或 zap 无可靠上游参照；上游 cask 已有适用版本的 zap 时不问，直接复用。
+  需要下载 DMG 时，用 questionnaire 工具提出单选题（问题中附文件大小与目的），选项：
   ① 下载并运行验证（推荐）——下载到缓存 + 运行内部 app 核对 zap 落盘 + 清理痕迹；
   ② 仅下载核验——只做 inspect 元数据与 SHA-256 核验，不运行；
   ③ 跳过——不下载，zap 按源码/框架证据写入并标注触发条件。
@@ -126,26 +128,17 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/in
 
 ### 4. 编写最小配方
 
-**cask：**
-- 保持 token 与文件名一致，填写版本、准确摘要、可插值 URL、name、desc、homepage。
-- macOS 专属应用必须声明 `depends_on :macos`：否则跨平台加载会因 `sha256` 解析为 nil 报 `Invalid cask`；单架构发行明确声明架构依赖。
-- 最低 macOS 版本来自制品的 `LSMinimumSystemVersion`：本仓库 `Homebrew/OSDependsOn` cop 视 cask 中的最低版本为冗余，配方统一只写 `depends_on :macos`
-  （`:catalina` 及更低版本符号已进 `DISABLED_MACOS_VERSIONS`，加载即抛异常），版本要求写进交付说明。
-- `livecheck` 根据真实 tag/发布策略编写，但默认只校验声明，不联网执行。
-- 不使用已弃用的 `preflight` / `postflight`，改用 `preflight_steps` / `postflight_steps` / `uninstall_preflight_steps` / `uninstall_postflight_steps`；
-  其中写文件用 `write_file`（默认 `base: :staged_path`，内容中 `#{appdir}` 改用 `{{appdir}}` 模板变量），不用 `File.write`。
-- stanza 顺序以本机 Homebrew 的 `STANZA_GROUPS` 为准（`arch`/`version`/`sha256`/`url` 信息组 → `livecheck` → `auto_updates`/`conflicts_with`/`depends_on` →
-  artifact 组 → `*_steps` → `uninstall` → `zap` → `caveats`），错位会被 `Cask/StanzaOrder` 判违规。
-  注意 `caveats` 是最后一组、写在 `zap` 之后，不是 artifact 组之前。
-- 按证据添加 app/binary、uninstall、zap；不盲信 `brew style --fix`（如对 `Cask/Desc` 的自动修正会产出不通顺文案），须人工复核修正结果。
-- 排查校验失败时按根因归类：一个 stanza 缺陷可能连带多条报错，不要按报错条数判断问题数量。
+**从模板创建**：cask 复制 `references/cask-template.rb`，formula 复制 `references/formula-template.rb`
+（均相对本 skill 目录）到 `Casks/<token>.rb` / `Formula/<token>.rb`，按证据填充占位符并删除未用注释行。
 
-**formula：**
-- 类名与文件名对应，明确稳定版本来源、SHA-256、homepage、desc 和有证据的 license。
-- 只声明真实的构建/运行依赖，按项目惯例编写 `install` 与有意义的 `test do`。
-- 新增或修改方法时补充项目风格的功能/参数/返回值说明；编写测试不等于默认执行它。
+核心纪律：token 与文件名一致；填写版本、准确摘要、可插值 URL、name、desc、homepage；
+`livecheck` 按真实 tag/发布策略编写（默认只校验声明，不联网执行）；按证据添加 artifact/uninstall/zap
+或 install/test do；两类配方均按项目约定更新 README，避免无关改动；网络失败或关键元数据缺失时保留阻塞状态。
 
-两类配方均按项目约定更新 README，避免无关改动。网络失败或关键元数据缺失时保留阻塞状态。
+详细编写规范以引用文档为准，编写前通读对应文件：
+[cask 编写准则](references/cask-guidelines.md)、[formula 编写准则](references/formula-guidelines.md)
+（含模板用法与填充后的成品参照）。排查校验失败时按根因归类：一个缺陷可能连带多条报错，
+不要按报错条数判断问题数量。
 
 ### 5. 离线验证
 
