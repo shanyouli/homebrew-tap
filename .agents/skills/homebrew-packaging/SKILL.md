@@ -50,8 +50,8 @@ compatibility: 校验需要本机已安装 Homebrew 及其 Ruby 审计和样式�
 | --- | --- |
 | 查询官方文档、发布 API、固定版本的源码配置 | 本地证据不足，且需要确认版本、摘要、架构、安装产物或数据目录；允许必要、定向查询 |
 | 用 `scripts/inspect.rb` 下载安装包到 Homebrew 缓存（不安装） | 本地证据不足以确认 app 名称、bundle id、最低系统版本、架构或签名，或 zap 缺少可靠上游参照（需运行时验证）时；**用 questionnaire 选择题提问**让用户选择验证方式（下载并运行 / 仅下载 / 跳过）；用户明确要求核验时不再重复提问 |
-| 人工解包或只读查看安装包 | inspect.rb 仅支持 DMG；其他格式（zip、pkg 等）人工解包后用 `--file` 复核，不启动软件 |
-| 运行 DMG 内 app 获取真实 zap 路径（拷贝临时目录、清理痕迹，不安装） | 用户在选择题中选择“下载并运行验证”后执行，属标准流程；运行未签名/未公证应用前说明风险；结束必须清理 ~/Library 落盘与临时目录，报告每项产生与否 |
+| 人工解包或只读查看安装包 | inspect.rb 支持 dmg/pkg/zip/tar.gz/.app；其他格式（如 7z、rar）人工解包后传解包目录或 `.app` 路径用 `--file` 复核，不启动软件 |
+| 运行安装包内 app 获取真实 zap 路径（拷贝临时目录、清理痕迹，不安装） | 用户在选择题中选择“下载并运行验证”后，用 `--run --yes` 执行；脚本只删除本次运行新增的路径；运行未签名/未公证应用前说明风险；输出逐项报告产生与否 |
 | `brew livecheck`、`brew audit --online`、`brew audit --new` | 不是默认验收；确需时取得当轮明确授权。`--new` 不能当离线严格检查使用 |
 | `brew install`、`reinstall`、`upgrade`、实际 `test do` | 改变环境或执行软件；只有用户单独要求/授权才执行 |
 
@@ -88,10 +88,16 @@ https://api.github.com/repos/<owner>/<repo>/releases/tags/<tag>
 
 ### 3. 核对安装与卸载元数据
 
-证据优先级：制品检查及其运行时验证（用户决定后下载到缓存并运行）→ 固定 tag 的上游源码/打包配置与上游维护的 cask（均须对照适用版本）→ 本机安装痕迹。
+证据优先级：
+
+1. 制品检查及其运行时验证（用户决定后下载到缓存并运行）
+2. 固定 tag 的上游源码/打包配置与上游维护的 cask（均须对照适用版本）
+3. 本机安装痕迹
+
 制品检查天然对应精确版本，不受主分支演进影响；源码检索只作补充或回退，且须对照固定 tag。
 
-需要联网确认制品信息时，用 skill 的 `scripts/inspect.rb` 检查草稿配方（下载到 Homebrew 缓存，不安装）：
+需要联网确认制品信息时，用 skill 的 `scripts/inspect.rb` 检查草稿配方（下载到 Homebrew 缓存，不安装）。
+支持 dmg、pkg、zip、tar.gz/tgz 与已解包的 `.app`：
 
 ```sh
 # 是否下载由用户在选择题中决定；用户也可自行在终端运行
@@ -100,8 +106,13 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/in
 # 指定架构解析多架构配方
 HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/inspect.rb -- Casks/winc.rb --arch x64
 
-# 离线复用缓存或已有安装包，不联网
-HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/inspect.rb -- --file ~/Library/Caches/Homebrew/downloads/<已缓存的.dmg>
+# 离线复用缓存或任意本地安装包（dmg/pkg/zip/tar.gz/.app），可附配方做版本比对
+HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/inspect.rb -- \
+  --file ~/Library/Caches/Homebrew/downloads/<已缓存的.dmg> --cask Casks/<token>.rb
+
+# 运行时验证 zap：自动启动→核对落盘→退出→复扫→只清理本次新增路径
+HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/inspect.rb -- \
+  --file <安装包> --run --yes
 ```
 
 输出包括：实际 app 名称、CFBundleIdentifier、LSMinimumSystemVersion、Mach-O 架构、签名与公证状态、
@@ -112,10 +123,19 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/in
 - 签名与公证状态来自 inspect 的 codesign 检查，据此决定是否需要 Gatekeeper caveat。
 - **何时提问**：离线证据不足以确认元数据，或 zap 无可靠上游参照；上游 cask 已有适用版本的 zap 时不问，直接复用。
   需要下载 DMG 时，用 questionnaire 工具提出单选题（问题中附文件大小与目的），选项：
-  ① 下载并运行验证（推荐）——下载到缓存 + 运行内部 app 核对 zap 落盘 + 清理痕迹；
-  ② 仅下载核验——只做 inspect 元数据与 SHA-256 核验，不运行；
+  ① 下载并运行验证（推荐）——下载到缓存 + `--run --yes` 运行内部 app 核对 zap 落盘；
+  ② 仅下载核验——只做元数据与 SHA-256 核验，不运行；
   ③ 跳过——不下载，zap 按源码/框架证据写入并标注触发条件。
   用户在对话中明确要求下载核验时不再重复提问。
+- `zap` 以运行时验证为准：用 `--run --yes` 执行（脚本自行拷贝临时目录、移除 quarantine、运行应用、
+  正常退出后复扫，并**只删除本次运行新增的路径**，运行前已存在的数据一律保留）。手工替代步骤：
+  拷贝 app 到临时目录 → 移除隔离标记 → 运行 → 核对 `~/Library` 落盘 → 正常退出后复查 → 清理本次新增路径。
+- 对照运行实况调整配方 zap：运行产生且可安全清理的路径写入配方；未产生但有源码/框架证据的项标注
+  触发条件保留（如开机自启的 LaunchAgents 需在应用内开启才写入）；既未产生又无证据的路径不写入。
+  inspect 候选只是起点，候选与实际落盘冲突时以实际为准（Winc 的候选按 bundle id，实际写入产品名目录）。
+  不因为 bundle id 看起来合理就补齐所有常见目录；不使用宽泛通配符，不删除用户文档、Markdown 笔记或共享数据。
+- 配置目录包含未保存内容/恢复数据时，说明 `zap` 会删除哪些数据。无法确认路径时报告缺项，不捏造，也不冒称 `zap :not_required`。
+- pkg/installer 的卸载应依据上游安装行为确认，不能直接照搬 app 的卸载策略。
 - `zap` 以运行时验证为准（经选择题由用户决定，不安装）：用户选择“下载并运行验证”后，把内部 app 拷贝到临时目录并移除
   quarantine 标记（等价于 caveats 中“右键打开”的手动放行）后运行，核对 `~/Library` 实际落盘；正常退出后
   再核对一次（Saved Application State 仅在正常退出时可能写入）。验证后逐项清理运行痕迹并复核无残留。
@@ -164,6 +184,7 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/va
 - 离线开关不是网络隔离：可信 Ruby 本身及依赖解析可能有额外行为，缺少本地依赖元数据时先报告；
   不允许以“审计是离线的”为由放行隐含下载。无 Homebrew/校验依赖时明确标为未验证。
 - tap 级审计和跨 OS × 架构模拟不在脚本范围内，也不作为本仓库验收手段；用户明确要求扩大检查时，先说明局限与联网代价再执行。
+- 本节的命令示例、退出码与 `--all` 规则与项目 `AGENTS.md` 的校验约定同源：修改任一处需同步另一处，避免两处漂移。
 
 ### 6. 交付
 
@@ -177,6 +198,7 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew ruby .agents/skills/homebrew-packaging/scripts/va
 ## 自检与回归
 
 - [ ] 类型、token、版本和 artifact 精确匹配。
+- [ ] 从模板创建的配方已删除未用注释行，占位符（尖括号）全部替换。
 - [ ] 摘要有来源，架构和系统要求不是推测。
 - [ ] app/binary/uninstall/zap 的关键路径有依据；下载过 DMG 的 zap 经运行时验证，未产生项标注触发条件。
 - [ ] 没有跨版本套用元数据或删除用户文档的通配符。

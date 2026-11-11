@@ -65,3 +65,5 @@
 
 模板只含最小可加载结构；`libexec` + `inreplace`、release asset URL、`man`/`pkgshare`、`head`
 等扩展写法，参照填充后的真实成品：仓库根 `Formula/mole.rb`（完整骨架例）、`Formula/yabai.rb`（asset URL + man/pkgshare 例）。
+
+提交前用 `grep '<' Formula/<token>.rb` 确认占位符已全部替换（类名 `Token` 也要改）。

@@ -62,7 +62,9 @@
 | 仅提供 aarch64 下载包 | 只声明已确认的架构，不推测 x64 包 |
 | 用户跳过运行验证 | 披露 zap 证据等级与触发条件，不批量套常见目录，不冒称运行时验证通过 |
 | 源码无法确认 app 元数据或 zap 路径 | 按 questionnaire 选择题提问；候选仅作参考，证据不足不写入 |
-| 运行时验证 zap 落盘 | 用 questionnaire 选择题提问（下载并运行 / 仅下载核验 / 跳过，附文件大小）；用户选择后执行对应流程并清理痕迹；产生的写入配方，未产生但有证据的标注触发条件 |
+| 运行时验证 zap 落盘 | 用 questionnaire 选择题提问（下载并运行 / 仅下载核验 / 跳过，附文件大小）；用户选择后用 `--run --yes` 执行，脚本只清理本次新增路径；产生的写入配方，未产生但有证据的标注触发条件 |
+| 非 DMG 安装包（pkg/zip/tar.gz/已解包 .app） | 直接 `--file` 检查，无需手工解包；不支持的格式（7z 等）手工解包后传解包目录 |
+| DMG 含多个 app | 主应用做版本比对与运行时验证，附属组件只列元数据并标记“（附属）” |
 | inspect 显示签名/公证状态 | 据此决定是否需要 Gatekeeper caveat |
 | 已有缓存安装包 | 用 `--file` 离线检查，不再下载 |
 | Application Support 存放恢复数据 | 解释 zap 的数据删除影响，不触碰用户笔记目录 |
@@ -84,9 +86,13 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew style .agents/skills/homebrew-packaging/scripts/v
 HOMEBREW_NO_AUTO_UPDATE=1 brew style .agents/skills/homebrew-packaging/scripts/inspect.rb .agents/skills/homebrew-packaging/tests/inspect_test.rb
 ```
 
+`references/cask-template.rb` 与 `references/formula-template.rb` 是含占位符的模板，不参与配方样式检查；
+改动后用 `brew ruby -e` 编译确认语法，真实配方仍由 `validate.rb` 全量校验。
+
 测试脚本覆盖路径必填、帮助、未知参数、`--all` 互斥、路径缺失、空目录、目录/多文件/重复路径、
 带空格路径、归档排除、跨调用目录的仓库定位、formula 类名错误、cask token 错误、语法错误、
-审计错误和样式错误。测试使用临时可信 fixture，不需要额外测试库，也不安装软件。
+审计错误和样式错误；inspect 测试覆盖 dmg/pkg/zip/tar.gz/.app 五种格式、版本比对、符号链接防护、
+`--run` 确认门禁与失败分支。测试使用临时可信 fixture，不需要额外测试库，不安装软件、不运行应用。
 
 ## 验收标准
 
