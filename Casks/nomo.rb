@@ -1,6 +1,6 @@
 cask "nomo" do
-  version "0.7.0"
-  sha256 "02b4a31bf39c0494de5bbb039a8f4d2f482d3992405f6b5c0f6bac5948243cab"
+  version "0.7.2"
+  sha256 "a3979f95bd2f290218325e8facbb597f3ce716ff0b58150ac0b5c220fd3a5db5"
 
   url "https://github.com/nomo-md/nomo/releases/download/v#{version}/Nomo_#{version}_aarch64.dmg"
   name "Nomo"
@@ -13,7 +13,7 @@ cask "nomo" do
   end
 
   depends_on arch: :arm64
-  depends_on :macos
+  depends_on macos: :monterey
 
   app "Nomo.app"
 
