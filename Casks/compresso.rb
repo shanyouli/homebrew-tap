@@ -1,9 +1,9 @@
 cask "compresso" do
   arch arm: "aarch64", intel: "x64"
 
-  version "4.1.0"
-  sha256 arm:   "d94f22d5e49fd6189a537be854bbf8f06db5d446e7fba20c6792eb99b3d14436",
-         intel: "0a399b65a3d11a6350da8bfd62f2d74dff68149b498421abef874ecbcfb59f63"
+  version "4.2.0"
+  sha256 arm:   "eb915c7b71751b21e7b59beb488923eac5418f6a50e2bd7b0738e00d5405057e",
+         intel: "dcd9bcae510e5e46ec44b73676f427011d1975a3c24f68b0ca11f00add3d262b"
 
   url "https://github.com/codeforreal1/compressO/releases/download/#{version}/CompressO_#{version}_#{arch}.dmg"
   name "compressO"
