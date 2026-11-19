@@ -1,9 +1,9 @@
 cask "winc" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.1.733"
-  sha256 arm:   "38a7b7d799526a3c5827041e9535d056685676f244441dd2c987e0b17aa92244",
-         intel: "524adf4b0542012bc0f492bac9fd3062dfbba8c27a1dec16e3601d0c05df70ce"
+  version "0.1.789"
+  sha256 arm:   "b00b711aca38574539fc7ce5dece1ac44bdb1b4d60c196c23beaabee04f2df48",
+         intel: "4b7e0d8a28a5e1e639a03336d84acf099e69815ef28f5d9d2754a50332a1bb16"
 
   url "https://github.com/DEEIX-AI/Winc/releases/download/v#{version}/Winc-#{version}-macos-#{arch}.dmg"
   name "Winc"
