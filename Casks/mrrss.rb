@@ -1,6 +1,6 @@
 cask "mrrss" do
-  version "1.3.44"
-  sha256 "30f3630fdf015c5e70b94e76fe838283e797742a5468c4c6a43993c0e2aacfd6"
+  version "1.3.45"
+  sha256 "564b32a79ee93d2761c83fef6ea8d6dec425cbd1c654a2fc6b2d7531a57c5bbe"
 
   url "https://github.com/WCY-dt/MrRSS/releases/download/v#{version}/MrRSS-#{version}-darwin-universal.dmg"
   name "MrRSS"
