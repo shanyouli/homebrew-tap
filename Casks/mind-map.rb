@@ -1,9 +1,9 @@
 cask "mind-map" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.21.0"
-  sha256 arm:   "544b4f65fac0ea8018a262696d373e67550d054c6f884fe0e49af7457bc97978",
-         intel: "077f68767fbc0bc4f2fee2ace32f5136b87e7e56d3c297f03c0c78f0d8c5edff"
+  version "0.21.1"
+  sha256 arm:   "aae14723174342c35dd002c5d4e390240cabad711871504f202e820a72031446",
+         intel: "2ee6f4b29e700f0d43ffa1df428d2a35b4f6280c1d7c4016db250d10f88fe3bb"
 
   url "https://github.com/wanglin2/mind-map/releases/download/#{version}/-mac-#{version}-#{arch}.dmg"
   name "mind-map"
